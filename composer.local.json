@@ -11,6 +11,13 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "slendie/framework": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slendie\\Framework\\": "packages/Slendie/Framework/src/"
+        },
+        "files": [
+            "packages/Slendie/Framework/helpers/routing.php"
+        ]
     }
 }

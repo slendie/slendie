@@ -1,3 +1,6 @@
 .env
+*.ps1
+*.local
+*.prod
 /packages
 /vendor
