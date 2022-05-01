@@ -4,64 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57b1d48d55309d77a29be0516fbac79e",
-    "packages": [
-        {
-            "name": "slendie/framework",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/slendie/framework.git",
-                "reference": "ddf1dd899a0bac7095de8f9dd5a720d2a09d2381"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/slendie/framework/zipball/ddf1dd899a0bac7095de8f9dd5a720d2a09d2381",
-                "reference": "ddf1dd899a0bac7095de8f9dd5a720d2a09d2381",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "helpers/routing.php"
-                ],
-                "psr-4": {
-                    "Slendie\\Framework\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Luciano Closs",
-                    "email": "lcloss@lcloss.dev",
-                    "homepage": "https://lucianocloss.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Slendie framework packages",
-            "homepage": "https://slendie.lcloss.dev",
-            "keywords": [
-                "framework",
-                "php",
-                "slendie"
-            ],
-            "support": {
-                "issues": "https://github.com/slendie/framework/issues",
-                "source": "https://github.com/slendie/framework/tree/main"
-            },
-            "time": "2022-05-01T18:20:01+00:00"
-        }
-    ],
+    "content-hash": "8555ca5a3dd8f13616b34fab1b06c349",
+    "packages": [],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "slendie/framework": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
