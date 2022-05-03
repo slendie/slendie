@@ -5,7 +5,7 @@ if ( !function_exists('startsWith') ) {
         if ( strlen($test) > strlen($subject) ) {
             return false;
         } else {
-            if ( substr( $subject, 0, strlen($test) ) == $test) {
+            if ( substr( $subject, 0, strlen($test) ) === $test) {
                 return true;
             } else {
                 return false;
@@ -70,4 +70,12 @@ if ( !function_exists('randomStr')) {
     
         return $word;
     }    
+}
+if ( !function_exists('dd') ) {
+    function dd( $array ) {
+        echo '<pre>';
+        var_dump( $array );
+        echo '</pre>';
+        die();
+    }
 }

@@ -9,4 +9,16 @@ class AppController extends Controller
     {
         $this->app->view('index');
     }
+    public function about()
+    {
+        $this->app->view('about');
+    }
+    public function contact()
+    {
+        $this->app->view('contact');
+    }
+    public function blog()
+    {
+        $this->app->view('blog');
+    }
 }

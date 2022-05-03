@@ -19,6 +19,7 @@ final class App
 
         // Catch Request
         $this->request = new Request();
+        // dd(['App::__construct', $this->request]);
     }
 
     public static function getInstance()

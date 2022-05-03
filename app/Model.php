@@ -1,10 +1,11 @@
 <?php
 namespace App;
 
-use Slendie\Framework\Model\ActiveRecord;
+use Slendie\Framework\Database\ActiveRecord;
 
 class Model extends ActiveRecord
 {
     protected $log_timestamp = true;
     protected $soft_deletes = true;
+    protected $table = NULL;
 }
