@@ -8,12 +8,12 @@ Router::get('/contact', 'AppController@contact')->name('contact');
 Router::get('/blog', 'AppController@blog')->name('blog');
 Router::get('/admin', 'Admin\AdminController@index')->name('admin');
 
-Router::get('/tasks', 'Admin\TaskController@index')->name('tasks.index');
-Router::get('/tasks/create', 'Admin\TaskController@create')->name('tasks.create');
-Router::post('/tasks/create', 'Admin\TaskController@store')->name('tasks.store');
-Router::get('/tasks/{id}/edit', 'Admin\TaskController@edit')->name('tasks.edit');
-Router::post('/tasks/{id}/edit', 'Admin\TaskController@update')->name('tasks.update');
-Router::post('/tasks/{id}/delete', 'Admin\TaskController@delete')->name('tasks.delete');
+Router::get('/tasks', 'Admin\TaskController@index')->middleware(['auth'])->name('tasks.index');
+Router::get('/tasks/create', 'Admin\TaskController@create')->middleware(['auth'])->name('tasks.create');
+Router::post('/tasks/create', 'Admin\TaskController@store')->middleware(['auth'])->name('tasks.store');
+Router::get('/tasks/{id}/edit', 'Admin\TaskController@edit')->middleware(['auth'])->name('tasks.edit');
+Router::post('/tasks/{id}/edit', 'Admin\TaskController@update')->middleware(['auth'])->name('tasks.update');
+Router::post('/tasks/{id}/delete', 'Admin\TaskController@delete')->middleware(['auth'])->name('tasks.delete');
 
 // -- Test
 Router::get('/test', function() {

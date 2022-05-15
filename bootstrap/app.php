@@ -17,3 +17,4 @@ require_once(VENDOR_FOLDER . 'autoload.php');
 require_once(BOOTSTRAP_FOLDER . 'autoload.php');
 require_once(HELPERS_FOLDER . 'functions.php');
 require_once(ROUTES_FOLDER . 'router.php');
+require_once(BOOTSTRAP_FOLDER . 'middlewares.php');
