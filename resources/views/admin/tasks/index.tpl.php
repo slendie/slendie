@@ -18,10 +18,21 @@
                                 <td>{{ $task->description }}</td>
                                 <td>
                                     <a class="text-primary" href="@route('tasks.edit', ['id' => $task->id])">Edit</a>
-                                    <a class="text-danger" href="@route('tasks.delete', ['id' => $task->id])">Delete</a>
+                                    <form action="@route('tasks.delete', ['id' => $task->id])" method="POST" id="form-{{ $task->id }}" style="display: inline;">
+                                    <a class="text-danger" href="#" onclick="submitForm('form-{{ $task->id }}')">Delete</a>
+                                    </form>
                                 </td>
                             </tr>
                             @endfor
                         </tbody>
                     </table>
+@endsection
+@section('scripts')
+<script>
+function submitForm( formId )
+{
+    var form = document.getElementById(formId);
+    form.submit();
+}
+</script>
 @endsection
