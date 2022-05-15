@@ -23,23 +23,36 @@ class TaskController extends Controller
     {
         $request = request();
 
-        // dd(['TaskController::store', $request]);
-
         $task = new Task();
         $task->description  = $request->description;
         $task->completed    = false;
         $task->save();
 
-        // $this->app->view('admin.tasks.create');
+        return redirect('tasks.index');
+    }
+
+    public function edit($id)
+    {
+        $task = Task::find($id);
+        $this->app->view('admin.tasks.edit', ['task' => $task]);
+    }
+
+    public function update($id)
+    {
+        $request = Request::getInstance();
+
+        $task = Task::find($id);
+        $task->description  = $request->description;
+        $task->save();
+
         return redirect('tasks.index');
     }
 
     public function delete($id)
     {
-        $request = new Request();
+        $request = Request::getInstance();
 
         $task = Task::find($id);
-        dd(['TaskController::delete', $id, $request]);
         $task->delete();
         return redirect('tasks.index');
     }

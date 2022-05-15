@@ -72,10 +72,20 @@ if ( !function_exists('randomStr')) {
     }    
 }
 if ( !function_exists('dd') ) {
-    function dd( $array ) {
+    function dd( ...$variables ) {
         echo '<pre>';
-        var_dump( $array );
+        foreach( $variables as $var )
+        var_dump( $var );
         echo '</pre>';
         die();
+    }
+}
+
+if ( !function_exists('dc') ) {
+    function dc( ...$variables ) {
+        echo '<pre>';
+        foreach( $variables as $var )
+        var_dump( $var );
+        echo '</pre>';
     }
 }

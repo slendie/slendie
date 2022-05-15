@@ -2,7 +2,8 @@
 namespace App;
 
 use Slendie\Framework\Routing\Request;
-use Slendie\Framework\Routing\Route;
+// use Slendie\Framework\Routing\Route;
+use Slendie\Framework\Routing\Router;
 use Slendie\Framework\View\View;
 
 final class App
@@ -18,8 +19,7 @@ final class App
         $this->view->fromEnv( SITE_FOLDER, '.env' );
 
         // Catch Request
-        $this->request = new Request();
-        // dd(['App::__construct', $this->request]);
+        $this->request = Request::getInstance();
     }
 
     public static function getInstance()
@@ -35,6 +35,7 @@ final class App
     }
 
     public function run() {
-        Route::resolve( $this->request );
+        // Route::resolve( $this->request );
+        Router::resolve();
     }
 }

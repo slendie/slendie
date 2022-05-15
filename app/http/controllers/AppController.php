@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Controller;
+use Slendie\Framework\Routing\Request;
 
 class AppController extends Controller
 {

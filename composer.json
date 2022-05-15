@@ -11,6 +11,16 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "slendie/framework": "dev-main"
+        "phpunit/phpunit": "9.5.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slendie\\Framework\\": "packages/slendie/framework/src/"
+        },
+        "files": [
+            "helpers/functions.php",
+            "packages/slendie/framework/helpers/environment.php",
+            "packages/slendie/framework/helpers/routing.php"
+        ]
     }
 }
