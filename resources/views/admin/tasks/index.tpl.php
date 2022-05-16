@@ -2,6 +2,7 @@
 @section('content')
                     <h1 class="mt-4">Tasks</h1>
                     <p>Manage your tasks</p>
+                    @include('partials.alert')
                     <a class="btn btn-primary" href=" @route('tasks.create')">Nova tarefa</a><br>
                     <table class="table table-striped">
                         <thead>
@@ -12,7 +13,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for( $tasks as $task )
+                            {% if $tasks %}
+                            {% foreach ($tasks as $task) %}
                             <tr>
                                 <td><input type="checkbox" name="complete-task-{{ $task->id }}" /></td>
                                 <td>{{ $task->description }}</td>
@@ -23,7 +25,8 @@
                                     </form>
                                 </td>
                             </tr>
-                            @endfor
+                            {% endforeach %}
+                            {% endif %}
                         </tbody>
                     </table>
 @endsection

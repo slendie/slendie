@@ -5,5 +5,6 @@
                         <li class="nav-item"><a class="nav-link @is_route('/contact', 'active')" @is_route('/contact', 'aria-current="page"') href="@route('contact')">Contact</a></li>
                         <li class="nav-item"><a class="nav-link @is_route('/blog', 'active')" @is_route('/blog', 'aria-current="page"') href="@route('blog')">Blog</a></li>
                         <li class="nav-item"><a class="nav-link @is_route('/admin', 'active')" @is_route('/admin', 'aria-current="page"') href="@route('admin')">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link @is_route('/login', 'active')" @is_route('/login', 'aria-current="page"') href="@route('login')">Login</a></li>
                     </ul>
                 </div>

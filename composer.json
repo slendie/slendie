@@ -19,8 +19,10 @@
         },
         "files": [
             "helpers/functions.php",
+            "packages/slendie/framework/helpers/view.php",
             "packages/slendie/framework/helpers/environment.php",
-            "packages/slendie/framework/helpers/routing.php"
+            "packages/slendie/framework/helpers/routing.php",
+            "packages/slendie/framework/helpers/session.php"
         ]
     }
 }

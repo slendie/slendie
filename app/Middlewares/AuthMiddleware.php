@@ -8,6 +8,7 @@ class AuthMiddleware extends Middleware
 {
     public static function up()
     {
+        
         return true;
     }
 
