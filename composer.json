@@ -11,18 +11,46 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "phpunit/phpunit": "9.5.x-dev"
+        "phpunit/phpunit": "9.5.x-dev",
+        "slendie/framework": "dev-local",
+        "slendie/tools": "dev-local",
+        "slendie/crawler": "dev-local"
     },
     "autoload": {
         "psr-4": {
-            "Slendie\\Framework\\": "packages/slendie/framework/src/"
+            "App\\": "app/"
         },
         "files": [
-            "helpers/functions.php",
-            "packages/slendie/framework/helpers/view.php",
-            "packages/slendie/framework/helpers/environment.php",
-            "packages/slendie/framework/helpers/routing.php",
-            "packages/slendie/framework/helpers/session.php"
+            "helpers/functions.php"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url":  "packages/slendie/framework",
+            "options": {
+                "versions": {
+                    "slendie/framework": "dev-local"
+                }
+            }            
+        },
+        {
+            "type": "path",
+            "url":  "packages/slendie/tools",
+            "options": {
+                "versions": {
+                    "slendie/tools": "dev-local"
+                }
+            }            
+        },
+        {
+            "type": "path",
+            "url":  "packages/slendie/crawler",
+            "options": {
+                "versions": {
+                    "slendie/crawler": "dev-local"
+                }
+            }            
+        }
+    ]
 }

@@ -31,6 +31,7 @@
 
             </div>
         </nav>
+        <div class="container px-4 px-lg-5">
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
@@ -40,6 +41,7 @@
             </div>
         </div>
 
+        </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

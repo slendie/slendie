@@ -21,6 +21,7 @@
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'tasks.index' ); ?>">Tasks</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'cards.index' ); ?>">Cards</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'users.index' ); ?>">Users</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
@@ -57,8 +58,8 @@
 
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">Tasks</h1>
-                    <p>Edit your task</p>
+                    <h1 class="mt-4">Cards</h1>
+                    <p>Create a new card</p>
                                         <?php if (has_toasts()) { ?>
                     <?php foreach ( toasts() as $toast ) { ?>
                     <div class="alert alert-<?php echo $toast['level']; ?>" role="alert">
@@ -75,19 +76,37 @@
                     <?php } ?>
 
 
-                    <form action="<?php echo route( 'tasks.update', ['id' => $task->id] ); ?>" method="POST">
+                    <form action="<?php echo route( 'cards.store' ); ?>" method="post">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label class="form-label" for="description">Description</label>
-                                <input class="form-control" type="text" name="description" id="description" value="<?php echo $task->description; ?>">
-                                <?php if (has_error('description')) { ?>
-                                <p class="small text-danger"><?php echo error('description'); ?></p>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="title">Title</label>
+                                <input class="form-control" type="text" name="title" id="title" value="<?php echo old('title'); ?>">
+                                <?php if (has_error('title')) { ?>
+                                <p class="small text-danger"><?php echo error('title'); ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="resume">Resume</label>
+                                <textarea class="form-control" id="resume" name="resume" rows="5" cols="80"><?php echo old('resume'); ?></textarea>
+                                <?php if (has_error('resume')) { ?>
+                                <p class="small text-danger"><?php echo error('resume'); ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="content">Content</label>
+                                <textarea class="form-control" id="content" name="content" rows="15" cols="80"><?php echo old('content'); ?></textarea>
+                                <?php if (has_error('content')) { ?>
+                                <p class="small text-danger"><?php echo error('content'); ?></p>
                                 <?php } ?>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 mt-2">
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-success" type="submit">Create</button>
                             </div>
                         </div>
                     </form>

@@ -21,6 +21,7 @@
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'tasks.index' ); ?>">Tasks</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'cards.index' ); ?>">Cards</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'users.index' ); ?>">Users</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
@@ -57,8 +58,8 @@
 
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">Tasks</h1>
-                    <p>Edit your task</p>
+                    <h1 class="mt-4">Cards</h1>
+                    <p>Manage your cards</p>
                                         <?php if (has_toasts()) { ?>
                     <?php foreach ( toasts() as $toast ) { ?>
                     <div class="alert alert-<?php echo $toast['level']; ?>" role="alert">
@@ -75,22 +76,34 @@
                     <?php } ?>
 
 
-                    <form action="<?php echo route( 'tasks.update', ['id' => $task->id] ); ?>" method="POST">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="form-label" for="description">Description</label>
-                                <input class="form-control" type="text" name="description" id="description" value="<?php echo $task->description; ?>">
-                                <?php if (has_error('description')) { ?>
-                                <p class="small text-danger"><?php echo error('description'); ?></p>
-                                <?php } ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 mt-2">
-                                <button class="btn btn-primary" type="submit">Update</button>
-                            </div>
-                        </div>
-                    </form>
+                    <a class="btn btn-primary" href=" <?php echo route( 'cards.create' ); ?>">Novo cartão</a><br>
+                    <?php if ($cards) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($cards) { ?>
+                            <?php foreach ($cards as $card) { ?>
+                            <tr>
+                                <td><?php echo $card->title; ?></td>
+                                <td>
+                                    <a class="text-primary" href="<?php echo route( 'cards.edit', ['id' => $card->id] ); ?>">Edit</a>
+                                    <form action="<?php echo route( 'cards.delete', ['id' => $card->id] ); ?>" method="POST" id="form-<?php echo $card->id; ?>" style="display: inline;">
+                                    <a class="text-danger" href="#" onclick="submitForm('form-<?php echo $card->id; ?>')">Delete</a>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                    <?php } else { ?>
+                    <p class="mt-3">Não há cartões criados. Esqueceu-se de algo?</p>
+                    <?php } ?>
 
                 </div>
             </div>
@@ -99,6 +112,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="http://slendie.php.test/js/scripts.js"></script>
-        
+        <script>
+function submitForm( formId )
+{
+    var form = document.getElementById(formId);
+    form.submit();
+}
+</script>
+
     </body>
 </html>

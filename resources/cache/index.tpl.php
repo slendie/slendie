@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="http://slendie.php.test/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="http://slendie.php.test/css/styles.css" rel="stylesheet" />
+        <link href="http://slendie.php.test/css/custom.css" rel="stylesheet" />
         
     </head>
     <body>
@@ -31,6 +32,7 @@
 
             </div>
         </nav>
+        <div class="container px-4 px-lg-3">
         <!-- Heading Row-->
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
                 <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
@@ -46,35 +48,24 @@
             </div>
             <!-- Content Row-->
             <div class="row gx-4 gx-lg-5">
+                <?php if ($cards) { ?>
+                <?php foreach ($cards as $card) { ?>
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h2 class="card-title">Card One</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                            <h2 class="card-title"><?php echo nl2br( htmlentities( $card->title, ENT_NOQUOTES ) ) ; ?></h2>
+                            <p class="card-text"><?php echo nl2br( htmlentities( $card->resume, ENT_NOQUOTES ) ) ; ?></p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="<?php echo route( 'cards.show', ['slug' => $card->slug] ); ?>">More Info</a></div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Card Two</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Card Three</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
+                <?php } ?>
+                <?php } else { ?>
+                <p>Não há cartões neste momento.</p>
+                <?php } ?>
             </div>
 
+        </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

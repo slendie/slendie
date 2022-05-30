@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="http://slendie.php.test/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="http://slendie.php.test/css/styles.css" rel="stylesheet" />
+        <link href="http://slendie.php.test/css/app.css" rel="stylesheet" />
         
     </head>
     <body>
@@ -20,6 +21,7 @@
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'tasks.index' ); ?>">Tasks</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'cards.index' ); ?>">Cards</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'users.index' ); ?>">Users</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>

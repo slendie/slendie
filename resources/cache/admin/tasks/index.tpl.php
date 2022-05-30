@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="http://slendie.php.test/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="http://slendie.php.test/css/styles.css" rel="stylesheet" />
+        <link href="http://slendie.php.test/css/app.css" rel="stylesheet" />
         
     </head>
     <body>
@@ -20,6 +21,7 @@
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'tasks.index' ); ?>">Tasks</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'cards.index' ); ?>">Cards</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?php echo route( 'users.index' ); ?>">Users</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
@@ -75,6 +77,7 @@
 
 
                     <a class="btn btn-primary" href=" <?php echo route( 'tasks.create' ); ?>">Nova tarefa</a><br>
+                    <?php if ($tasks) { ?>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -87,8 +90,8 @@
                             <?php if ($tasks) { ?>
                             <?php foreach ($tasks as $task) { ?>
                             <tr>
-                                <td><input type="checkbox" name="complete-task-<?php echo $task->id; ?>" /></td>
-                                <td><?php echo $task->description; ?></td>
+                                <td><input type="checkbox" name="complete-task-<?php echo $task->id; ?>" <?php if ($task->completed) { ?>checked<?php } ?> onclick="complete(<?php echo $task->id; ?>)" /></td>
+                                <td <?php if ($task->completed) { ?>class="completed"<?php } ?>><?php echo $task->description; ?></td>
                                 <td>
                                     <a class="text-primary" href="<?php echo route( 'tasks.edit', ['id' => $task->id] ); ?>">Edit</a>
                                     <form action="<?php echo route( 'tasks.delete', ['id' => $task->id] ); ?>" method="POST" id="form-<?php echo $task->id; ?>" style="display: inline;">
@@ -100,6 +103,9 @@
                             <?php } ?>
                         </tbody>
                     </table>
+                    <?php } else { ?>
+                    <p class="mt-3">Não há tarefas criadas. Tenha um dia feliz!</p>
+                    <?php } ?>
 
                 </div>
             </div>
@@ -113,6 +119,10 @@ function submitForm( formId )
 {
     var form = document.getElementById(formId);
     form.submit();
+}
+function complete( taskId )
+{
+    window.location.href = "<?php echo route( 'tasks.complete' ); ?>?task=" + taskId;
 }
 </script>
 

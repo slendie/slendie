@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="http://slendie.php.test/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="http://slendie.php.test/css/styles.css" rel="stylesheet" />
+        <link href="http://slendie.php.test/css/custom.css" rel="stylesheet" />
         
     </head>
     <body>
@@ -31,13 +32,13 @@
 
             </div>
         </nav>
-        <div class="container px-4 px-lg-5">
+        <div class="container px-4 px-lg-3">
         <!-- Page content-->
         <div class="container">
-            <div class="text-center mt-5">
-                <h1>A Bootstrap 5 Starter Template</h1>
-                <p class="lead">A complete project boilerplate built with Bootstrap</p>
-                <p>Bootstrap v5.1.3</p>
+            <div class="mt-5 pb-5">
+                <h1><?php echo nl2br( htmlentities( $card->title, ENT_NOQUOTES ) ) ; ?></h1>
+                <p class="lead"><?php echo nl2br( htmlentities( $card->resume, ENT_NOQUOTES ) ) ; ?></p>
+                <p><?php echo nl2br( str_replace(" ", "&nbsp;", nl2br( htmlentities( $card->content, ENT_NOQUOTES ) )  ) ) ; ?></p>
             </div>
         </div>
 

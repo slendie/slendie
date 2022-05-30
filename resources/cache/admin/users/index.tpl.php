@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="http://slendie.php.test/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="http://slendie.php.test/css/styles.css" rel="stylesheet" />
+        <link href="http://slendie.php.test/css/app.css" rel="stylesheet" />
         
     </head>
     <body>
@@ -78,7 +79,6 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
                                 <th>Actions</th>

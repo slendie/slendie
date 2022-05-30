@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="form-label" for="description">Description</label>
-                                <input class="form-control" type="text" name="description" id="description">
+                                <input class="form-control" type="text" name="description" id="description" value="{{ old('description') }}">
                                 {% if has_error('description') %}
                                 <p class="small text-danger">{{ error('description') }}</p>
                                 {% endif %}

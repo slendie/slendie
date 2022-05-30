@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="@asset('assets/favicon.ico')" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="@asset('css/styles.css')" rel="stylesheet" />
+        <link href="@asset('css/custom.css')" rel="stylesheet" />
         @yield('styles')
     </head>
     <body>
@@ -21,7 +22,9 @@
                 @include('partials.navbar')
             </div>
         </nav>
+        <div class="container px-4 px-lg-3">
         @yield('content')
+        </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

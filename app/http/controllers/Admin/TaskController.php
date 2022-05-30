@@ -77,4 +77,17 @@ class TaskController extends Controller
 
         return redirect('tasks.index');
     }
+
+    public function complete()
+    {
+        $request = Request::getInstance();
+
+        $id = $request->task;
+
+        $task = Task::find($id);
+        $task->completed = ($task->completed ? false : true);
+        $task->save();
+        
+        return redirect('tasks.index');
+    }
 }

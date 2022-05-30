@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f71951e3724b2ee06b5096d0e877f1a",
+    "content-hash": "61aea1eae9eb7fb0b879a1ab016d9d4c",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -865,12 +865,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f53bae505d8e545cc23a1bbb6d66df9cbeb91f70"
+                "reference": "3a36f4d486ef9671bb184579a27d1f18f5369a61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f53bae505d8e545cc23a1bbb6d66df9cbeb91f70",
-                "reference": "f53bae505d8e545cc23a1bbb6d66df9cbeb91f70",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3a36f4d486ef9671bb184579a27d1f18f5369a61",
+                "reference": "3a36f4d486ef9671bb184579a27d1f18f5369a61",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +904,6 @@
                 "sebastian/version": "^3.0.2"
             },
             "require-dev": {
-                "ext-pdo": "*",
                 "phpspec/prophecy-phpunit": "^2.0.1"
             },
             "suggest": {
@@ -960,7 +959,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-03T08:11:40+00:00"
+            "time": "2022-05-23T07:11:21+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -1927,6 +1926,125 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
+            "name": "slendie/crawler",
+            "version": "dev-local",
+            "dist": {
+                "type": "path",
+                "url": "packages/slendie/crawler",
+                "reference": "e4823bbc392a7cc0831a12c54e8287dea55f096f"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Slendie\\Crawler\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luciano Closs",
+                    "email": "lcloss@lcloss.dev",
+                    "homepage": "https://lucianocloss.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Slendie Crawler",
+            "homepage": "https://slendie.lcloss.dev",
+            "keywords": [
+                "crawler",
+                "php",
+                "slendie"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "slendie/framework",
+            "version": "dev-local",
+            "dist": {
+                "type": "path",
+                "url": "./packages/slendie/framework",
+                "reference": "f4f61b784ce625d3652341696da74c33f23bbe72"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Slendie\\Framework\\": "src/"
+                },
+                "files": [
+                    "/src/helpers/view.php",
+                    "/src/helpers/routing.php",
+                    "/src/helpers/environment.php",
+                    "/src/helpers/session.php"
+                ]
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luciano Closs",
+                    "email": "lcloss@lcloss.dev",
+                    "homepage": "https://lucianocloss.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Slendie framework packages",
+            "homepage": "https://slendie.lcloss.dev",
+            "keywords": [
+                "framework",
+                "php",
+                "slendie"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "slendie/tools",
+            "version": "dev-local",
+            "dist": {
+                "type": "path",
+                "url": "./packages/slendie/tools",
+                "reference": "cea5062d61ad7ce012bf9f70b44fc266793dd06c"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Slendie\\Tools\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luciano Closs",
+                    "email": "lcloss@lcloss.dev",
+                    "homepage": "https://lucianocloss.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Slendie Framework Tools - can be used independently and separately",
+            "homepage": "https://slendie.lcloss.dev",
+            "keywords": [
+                "framework",
+                "php",
+                "slendie"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.2.1",
             "source": {
@@ -2040,7 +2158,10 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "phpunit/phpunit": 20
+        "phpunit/phpunit": 20,
+        "slendie/framework": 20,
+        "slendie/tools": 20,
+        "slendie/crawler": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

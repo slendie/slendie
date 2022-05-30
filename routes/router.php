@@ -16,6 +16,15 @@ Router::post('/tasks/create', 'Admin\TaskController@store')->middleware(['auth']
 Router::get('/tasks/{id}/edit', 'Admin\TaskController@edit')->middleware(['auth'])->name('tasks.edit');
 Router::post('/tasks/{id}/edit', 'Admin\TaskController@update')->middleware(['auth'])->name('tasks.update');
 Router::post('/tasks/{id}/delete', 'Admin\TaskController@delete')->middleware(['auth'])->name('tasks.delete');
+Router::get('/tasks/complete', 'Admin\TaskController@complete')->middleware(['auth'])->name('tasks.complete');
+
+Router::get('/cards', 'Admin\CardController@index')->middleware(['auth'])->name('cards.index');
+Router::get('/cards/create', 'Admin\CardController@create')->middleware(['auth'])->name('cards.create');
+Router::post('/cards/create', 'Admin\CardController@store')->middleware(['auth'])->name('cards.store');
+Router::get('/cards/{id}/edit', 'Admin\CardController@edit')->middleware(['auth'])->name('cards.edit');
+Router::post('/cards/{id}/edit', 'Admin\CardController@update')->middleware(['auth'])->name('cards.update');
+Router::post('/cards/{id}/delete', 'Admin\CardController@delete')->middleware(['auth'])->name('cards.delete');
+Router::get('/card/{slug}', 'Admin\CardController@show')->name('cards.show');
 
 Router::get('/users', 'Admin\UserController@index')->middleware(['auth'])->name('users.index');
 Router::get('/users/create', 'Admin\UserController@create')->middleware(['auth'])->name('users.create');
