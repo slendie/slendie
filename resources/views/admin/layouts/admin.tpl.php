@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="@asset('assets/favicon.ico')" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="@asset('css/styles.css')" rel="stylesheet" />
+        <link href="@asset('css/app.css')" rel="stylesheet" />
         @yield('styles')
     </head>
     <body>

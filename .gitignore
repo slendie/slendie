@@ -6,3 +6,4 @@
 *.prod.json
 /packages
 /vendor
+/resources/cache

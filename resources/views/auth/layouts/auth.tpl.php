@@ -10,19 +10,11 @@
         <link rel="icon" type="image/x-icon" href="@asset('assets/favicon.ico')" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="@asset('css/styles.css')" rel="stylesheet" />
-        <link href="@asset('css/custom.css')" rel="stylesheet" />
+        <link href="@asset('css/auth.css')" rel="stylesheet" />
         @yield('styles')
     </head>
     <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="@route('home')">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                @include('partials.navbar')
-            </div>
-        </nav>
-        <div class="container px-4 px-lg-3">
+        <div class="content">
         @yield('content')
         </div>
         <!-- Footer-->
