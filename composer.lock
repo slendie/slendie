@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3763694c8e57dc1912cec03d1747b1f",
+    "content-hash": "1d589e578b1ac3c51bb4114a30a8f2ad",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -1927,11 +1927,17 @@
         },
         {
             "name": "slendie/crawler",
-            "version": "dev-local",
-            "dist": {
-                "type": "path",
-                "url": "packages/slendie/crawler",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slendie/crawler.git",
                 "reference": "4ec2a8ca2488e8d3249019e8379221a8f270293e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slendie/crawler/zipball/4ec2a8ca2488e8d3249019e8379221a8f270293e",
+                "reference": "4ec2a8ca2488e8d3249019e8379221a8f270293e",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -1939,6 +1945,7 @@
                     "Slendie\\Crawler\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1957,35 +1964,39 @@
                 "php",
                 "slendie"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/slendie/crawler/issues",
+                "source": "https://github.com/slendie/crawler/tree/develop"
+            },
+            "time": "2022-06-01T23:41:24+00:00"
         },
         {
             "name": "slendie/framework",
-            "version": "dev-local",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slendie/framework.git",
+                "reference": "68369a91af5011201cf0b145dbb22fd4435dbe5f"
+            },
             "dist": {
-                "type": "path",
-                "url": "packages/slendie/framework",
-                "reference": "8b7a0db7e0116de3ae95bb34d4777587e511d02d"
+                "type": "zip",
+                "url": "https://api.github.com/repos/slendie/framework/zipball/68369a91af5011201cf0b145dbb22fd4435dbe5f",
+                "reference": "68369a91af5011201cf0b145dbb22fd4435dbe5f",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Slendie\\Framework\\": "src/"
-                },
                 "files": [
                     "/src/helpers/view.php",
                     "/src/helpers/routing.php",
                     "/src/helpers/environment.php",
                     "/src/helpers/session.php"
-                ]
+                ],
+                "psr-4": {
+                    "Slendie\\Framework\\": "src/"
+                }
             },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2004,17 +2015,25 @@
                 "php",
                 "slendie"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/slendie/framework/issues",
+                "source": "https://github.com/slendie/framework/tree/develop"
+            },
+            "time": "2022-06-19T18:44:24+00:00"
         },
         {
             "name": "slendie/tools",
-            "version": "dev-local",
-            "dist": {
-                "type": "path",
-                "url": "packages/slendie/tools",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slendie/tools.git",
                 "reference": "18741f3430b45c81999e9e5731f3db27766f18a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slendie/tools/zipball/18741f3430b45c81999e9e5731f3db27766f18a4",
+                "reference": "18741f3430b45c81999e9e5731f3db27766f18a4",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -2022,6 +2041,7 @@
                     "Slendie\\Tools\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2040,9 +2060,11 @@
                 "php",
                 "slendie"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/slendie/tools/issues",
+                "source": "https://github.com/slendie/tools/tree/develop"
+            },
+            "time": "2022-06-19T17:19:18+00:00"
         },
         {
             "name": "theseer/tokenizer",
