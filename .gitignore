@@ -2,7 +2,9 @@
 *.ps1
 *.local
 *.prod
+*.dev
 *.local.json
+*.dev.json
 *.prod.json
 /packages
 /vendor

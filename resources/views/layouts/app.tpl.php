@@ -11,6 +11,8 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="@asset('css/styles.css')" rel="stylesheet" />
         <link href="@asset('css/custom.css')" rel="stylesheet" />
+        <!-- Toastr -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
         @yield('styles')
     </head>
     <body>
@@ -33,6 +35,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="@asset('js/scripts.js')"></script>
+        <!-- Toastr -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         @yield('scripts')
     </body>
 </html>
