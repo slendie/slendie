@@ -1,4 +1,5 @@
 <?php
+use Slendie\Framework\Session\Session;
 
 if ( !function_exists('startsWith') ) {
     function startsWith( $test, $subject ) {
@@ -117,4 +118,11 @@ if ( !function_exists('slugify') ) {
 
         return $text;
     }    
+}
+
+if ( !function_exists('auth') ) {
+    function auth() 
+    {
+        return Session::has( 'logged_user' );
+    }
 }
