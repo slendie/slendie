@@ -72,7 +72,7 @@ class TaskController extends Controller
 
         $task = Task::find($id);
         $task->delete();
-        
+
         Flash::success('Tarefa eliminada com sucesso.');
 
         return redirect('tasks.index');
