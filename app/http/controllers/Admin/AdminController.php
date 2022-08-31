@@ -7,6 +7,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $this->app->view('admin.index');
+        return view('admin.index');
     }
 }

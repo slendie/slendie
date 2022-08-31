@@ -11,6 +11,17 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "slendie/framework": "dev-main"
+        "phpunit/phpunit": "9.5.x-dev",
+        "slendie/framework": "dev-develop",
+        "slendie/tools": "dev-develop",
+        "slendie/crawler": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "helpers/functions.php"
+        ]
     }
 }
