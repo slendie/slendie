@@ -24,6 +24,6 @@ final class DatabaseTest extends TestCase
         $sql = "SELECT * FROM `users`;";
         $rows = $db->fetchAll( $sql );
 
-        return $this->assertEquals(true, true);
+        return $this->assertGreaterThan(0, count( $rows));
     }
 }
