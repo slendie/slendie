@@ -4,7 +4,7 @@
                         {% if ( auth() ) %}
                         <li class="nav-item"><a class="nav-link" href="@route('admin')">Admin</a></li>
                         {% else %}
-                        <li class="nav-item"><a class="nav-link" href="@route('login')">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@route('auth.login')">Login</a></li>
                         {% endif %}
                         
                     </ul>

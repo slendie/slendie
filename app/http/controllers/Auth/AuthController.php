@@ -29,4 +29,33 @@ class AuthController extends Controller
 
         return redirect('home');
     }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function create()
+    {
+        $request = Request::getInstance();
+
+        $user_exists = Auth::userExists( $request->email );
+
+        if ( $user_exists ) {
+            Flash::error('Já existe um utilizador com o email indicado.');
+            return view('auth.register');
+        }
+        if ( $request->password != $request->password_confirmation ) {
+            Flash::error('A password e a confirmação da password não coincidem.');
+            return view('auth.register');
+        }
+
+        $user = new User();
+        $user->email    = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
+
+        return redirect('auth.login');
+    }
 }
