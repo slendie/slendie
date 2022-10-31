@@ -1,5 +1,5 @@
 <?php
-use Slendie\Tools\Str;
+use Slendie\Framework\Session\Session;
 
 if ( !function_exists('startsWith') ) {
     function startsWith( $test, $subject ) {
@@ -42,6 +42,35 @@ if ( !function_exists('dc') ) {
 if ( !function_exists('slugify') ) {
     function slugify($text, string $divider = '-')
     {
-        return Str::slugify( $text, $divider );
+        // replace non letter or digits by divider
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $divider);
+
+        // remove duplicate divider
+        $text = preg_replace('~-+~', $divider, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+        return 'n-a';
+        }
+
+        return $text;
+    }    
+}
+
+if ( !function_exists('auth') ) {
+    function auth() 
+    {
+        return Session::has( 'logged_user' );
     }
 }

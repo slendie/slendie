@@ -24,6 +24,7 @@ class AuthController extends Controller
         if ( !$is_auth ) {
             Flash::error('Utilizador inexistente ou password inválida.');
             return view('auth.login');
+            // return redirect('login');
         }
 
         return redirect('home');

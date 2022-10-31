@@ -3,7 +3,10 @@
 use Slendie\Framework\Routing\Router;
 
 Router::get('/', 'AppController@index')->name('home');
-Router::get('/admin', 'Admin\AdminController@index')->name('admin');
+Router::get('/login', 'Auth\AuthController@login')->name('login');
+Router::post('/login', 'Auth\AuthController@signin')->name('signin');
+
+Router::get('/admin', 'Admin\AdminController@index')->middleware(['auth'])->name('admin');
 
 Router::get('/tasks', 'Admin\TaskController@index')->middleware(['auth'])->name('tasks.index');
 Router::get('/tasks/create', 'Admin\TaskController@create')->middleware(['auth'])->name('tasks.create');
