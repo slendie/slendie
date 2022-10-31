@@ -5,6 +5,6 @@ use App\Model;
 
 class User extends Model
 {
+    protected static $table = 'users';
     protected $log_timestamp = true;
-    protected $table = 'users';
 }
