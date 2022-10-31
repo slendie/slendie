@@ -12,7 +12,18 @@ final class DatabaseTest extends TestCase
      */
     public function testCanBeSingleton()
     {
-        $env = Environment::getEnvFile();
-        $this->assertInstanceOf(Database::class, Database::getInstance( $env ));
+        $db = Database::getInstance();
+
+        $this->assertInstanceOf(Database::class, $db);
+    }
+
+    public function testCanFetchAllUsers()
+    {
+        $db = Database::getInstance();
+
+        $sql = "SELECT * FROM `users`;";
+        $rows = $db->fetchAll( $sql );
+
+        return $this->assertEquals(true, true);
     }
 }
