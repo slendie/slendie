@@ -1,5 +1,4 @@
 <?php
-namespace App;
 
 use Slendie\Framework\Environment\Environment;
 use PHPUnit\Framework\TestCase;

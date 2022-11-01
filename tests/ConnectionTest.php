@@ -25,6 +25,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.query.php
+     * @depends testCanConnectToDatabase
      */
     public function testCanReturnPdoStatement()
     {
@@ -40,6 +41,7 @@ final class ConnectionTest extends TestCase
     /**
      * https://www.php.net/manual/en/pdo.exec.php
      * https://www.php.net/manual/en/pdostatement.rowcount.php
+     * @depends testCanReturnPdoStatement
      */
     public function testCanExecDelete()
     {
@@ -59,6 +61,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.exec.php
+     * @depends testCanExecDelete
      */
     public function testCanExecInsert()
     {
@@ -72,6 +75,9 @@ final class ConnectionTest extends TestCase
         $this->assertEquals(1, $inserted_rows);
     }
 
+    /**
+     * @depends testCanExecInsert
+     */
     public function testCanQuerySingleSelect()
     {
         $conn = Connection::getInstance();
@@ -87,6 +93,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.prepare.php
+     * @depends testCanExecInsert
      */
     public function testCanExecPrepareSelect()
     {
@@ -111,6 +118,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.prepare.php
+     * @depends testCanExecInsert
      */
     public function testCanExecPrepareSelectQuotation()
     {
@@ -135,6 +143,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.prepare.php
+     * @depends testCanConnectToDatabase
      */
     public function testCanExecPrepareInsert()
     {
@@ -155,6 +164,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.prepare.php
+     * @depends testCanExecPrepareInsert
      */
     public function testCanExecPrepareUpdate()
     {
@@ -177,6 +187,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.errorinfo.php
+     * @depends testCanConnectToDatabase
      */
     public function testCanGetErrorInfo()
     {
@@ -198,6 +209,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.errorcode.php
+     * @depends testCanConnectToDatabase
      */
     public function testCanGetErrorCode()
     {
@@ -218,6 +230,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.errorcode.php
+     * @depends testCanConnectToDatabase
      */
     public function testCanGetErrorFromCatch()
     {
@@ -239,6 +252,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.lastinsertid.php
+     * @depends testCanConnectToDatabase
      */
     public function testGetLastInsertId()
     {
@@ -267,6 +281,7 @@ final class ConnectionTest extends TestCase
 
     /**
      * https://www.php.net/manual/en/pdo.begintransaction.php
+     * @depends testCanConnectToDatabase
      */
     public function testCanRollbackTransaction()
     {

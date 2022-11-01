@@ -5,63 +5,88 @@ use Slendie\Framework\Database\Sql;
 
 final class SqlTest extends TestCase
 {
-    /**
-     * @return void
-     */
-    public function testCanMakeASelect()
+    public function testCanMakeSimpleSelect()
     {
-        $sql = new Sql();
-        $sql->setTable('sample');
-        $sql->setIdColumn('id');
+        $sql = new Sql('users');
+        $sql->select();
+        $select = $sql->get();
 
-        $query = $sql->select()->get();
-
-        $expected = "SELECT * FROM sample ;";
-        $this->assertEquals($expected, $query);
+        return $this->assertEquals('SELECT * FROM `users`', $select);
     }
 
-    /**
-     * @return void
-     */
-    public function testCanMakeASingleSelect()
+    public function testCanMakeConcatenatedSelect()
     {
-        $sql = new Sql();
-        $sql->setTable('sample');
-        $sql->setIdColumn('id');
-        $sql->setPairs(['id' => 1]);
+        $select = (new Sql('users'))->select()->get();
 
-        $query = $sql->where('id', 1)->select()->get();
+        return $this->assertEquals('SELECT * FROM `users`', $select);
+    }
 
-        $expected = "SELECT * FROM sample WHERE id = 1;";
-        $this->assertEquals($expected, $query);
+    public function testCanMakeSelectWhereWithValue()
+    {
+        $sql = new Sql('users');
+        $sql->select()->where('id', 1);
+        $select = $sql->get();
 
-        $sql = new Sql();
-        $sql->setTable('sample');
-        $sql->setIdColumn('id');
-        $sql->setPairs(['id' => 1]);
-        $query = $sql->where('id', 1)->whereAnd('name', 'John')->select()->get();
+        return $this->assertEquals('SELECT * FROM `users` WHERE `id` = 1', $select);
+    }
 
-        $expected = "SELECT * FROM sample WHERE (id = 1 ) AND (name = 'John' );";
-        $this->assertEquals($expected, $query);
+    public function testCanMakeSelectWhereWithoutValue()
+    {
+        $sql = new Sql('users');
+        $sql->select()->where('id');
+        $select = $sql->get();
 
-        $sql = new Sql();
-        $sql->setTable('sample');
-        $sql->setIdColumn('id');
-        $sql->setPairs(['id' => 1]);
+        return $this->assertEquals('SELECT * FROM `users` WHERE `id` = :id', $select);
+    }
 
-        $query = $sql->where('id', 1)->whereAnd('name', 'John')->offset(5)->limit(10)->select()->get();
+    public function testCanMakeSelectWithMultipleWhere()
+    {
+        $select = (new Sql('users'))
+            ->select()
+            ->where('id', 1)
+            ->orWhere('id', 2)
+            ->orOpen()
+            ->where('id', 3)
+            ->where('id', 4)
+            ->close()
+            ->get();
 
-        $expected = "SELECT * FROM sample WHERE (id = 1 ) AND (name = 'John' ) LIMIT 10 OFFSET 5;";
-        $this->assertEquals($expected, $query);
+        return $this->assertEquals('SELECT * FROM `users` WHERE `id` = 1 OR `id` = 2 OR (`id` = 3 AND `id` = 4)', $select);
+    }
 
-        $sql = new Sql();
-        $sql->setTable('sample');
-        $sql->setIdColumn('id');
-        $sql->setPairs(['id' => 1]);
+    public function testCanMakeSelectGroupAndOrder()
+    {
+        $select = (new Sql('users'))
+            ->select(['role', 'name'])
+            ->where('score', 1, '>')
+            ->group('role')
+            ->order('name', 'DESC')
+            ->limit(10)
+            ->offset(15)
+            ->get();
 
-        $query = $sql->where('id', 1)->whereAnd('name', 'John')->orderBy('name')->offset(5)->limit(10)->select()->get();
+        $expected = "SELECT `role`, `name` FROM `users` WHERE `score` > 1 GROUP BY `role` ORDER BY `name` DESC LIMIT 10 OFFSET 15";
 
-        $expected = "SELECT * FROM sample WHERE (id = 1 ) AND (name = 'John' ) ORDER BY name ASC LIMIT 10 OFFSET 5;";
-        $this->assertEquals($expected, $query);
+        return $this->assertEquals($expected, $select);
+    }
+
+    public function testCanMakeInsert()
+    {
+        $insert = (new Sql('users'))
+            ->insert(['name', 'email', 'password'])->get();
+
+        $expected = "INSERT INTO `users` (`name`, `email`, `password`) VALUES (?, ?, ?)";
+
+        return $this->assertEquals($expected, $insert);
+    }
+
+    public function testCanMakeUpdate()
+    {
+        $update = (new Sql('users'))
+            ->update(['name', 'email', 'password'])->get();
+
+        $expected = "UPDATE `users` SET `name` = ?, `email` = ?, `password` = ?";
+
+        return $this->assertEquals($expected, $update);
     }
 }

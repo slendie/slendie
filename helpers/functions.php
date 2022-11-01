@@ -1,5 +1,6 @@
 <?php
 use Slendie\Framework\Session\Session;
+use Slendie\Tools\Str;
 
 if ( !function_exists('startsWith') ) {
     function startsWith( $test, $subject ) {
