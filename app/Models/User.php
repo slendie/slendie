@@ -1,10 +1,10 @@
 <?php
 namespace App\Models;
 
-use App\Model;
+use Slendie\Framework\Database\Model;
 
 class User extends Model
 {
-    protected static $table = 'users';
+    protected $table = 'users';
     protected $log_timestamp = true;
 }

@@ -1,10 +1,10 @@
 <?php
 namespace App\Models;
 
-use App\Model;
+use App\ModelOld;
 use Slendie\Framework\Database\Sql;
 
-class Card extends Model
+class Card extends ModelOld
 {
     protected $log_timestamp = true;
     protected $table = 'cards';

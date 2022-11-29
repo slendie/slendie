@@ -4,7 +4,7 @@ namespace App;
 use Slendie\Framework\Routing\Request;
 use Slendie\Framework\Routing\Router;
 use Slendie\Framework\Database\Connection;
-use Slendie\Framework\Environment\Env;
+use Slendie\Framework\Environment\Environment;
 
 final class App
 {
@@ -17,7 +17,8 @@ final class App
     {
         // Catch Request
         $this->request = Request::getInstance();
-        $this->env = Env::getInstance();
+        $this->env = Environment::getInstance();
+        $this->env->load();
     }
 
     public static function getInstance()
@@ -37,7 +38,7 @@ final class App
     {
         if ( is_null($this->conn) ) {
             $this->conn = Connection::getInstance();
-            $this->conn->setOptions( $this->env->database );
+            $this->conn->setOptions( env('DATABASE') );
             $this->conn->connect();
         }
         return $this->conn;
