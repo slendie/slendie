@@ -21,8 +21,8 @@
         }
     ],
     "require": {
-        "slendie/framework": "dev-develop",
-        "slendie/tools": "dev-develop",
+        "slendie/framework": "@dev",
+        "slendie/tools": "@dev",
         "slendie/crawler": "dev-develop"
     },
     "autoload": {

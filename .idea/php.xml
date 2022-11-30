@@ -27,15 +27,10 @@
       <path value="$PROJECT_DIR$/vendor/slendie/tools" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
-      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
       <path value="$PROJECT_DIR$/vendor/slendie/crawler" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
-      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
-      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
-      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
-      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
       <path value="$PROJECT_DIR$/vendor/slendie/framework" />
     </include_path>
   </component>
