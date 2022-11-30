@@ -4,7 +4,7 @@ namespace App\Models;
 use Slendie\Framework\Database\Model;
 use Slendie\Framework\Database\Sql;
 
-class Card extends Model
+class Card extends ModelOld
 {
     protected $table = 'cards';
     protected $log_timestamp = true;

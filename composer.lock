@@ -57,7 +57,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/slendie/framework",
-                "reference": "5abf9b3ec1cc8256719475bc8d02727dbed66a47"
+                "reference": "30b100b06e196393d98917f84ffff8d87f971eea"
             },
             "type": "library",
             "autoload": {
@@ -104,7 +104,11 @@
             "dist": {
                 "type": "path",
                 "url": "packages/slendie/tools",
+<<<<<<< HEAD
+                "reference": "37373bcba5dac71b8855a7b0aa283c110f900de4"
+=======
                 "reference": "6f6c586e437514c9ca446b43ad52a624a59805a2"
+>>>>>>> afe4a1562c2b619162a531b8073ba8b06fd1b250
             },
             "type": "library",
             "autoload": {
@@ -1781,5 +1785,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }
