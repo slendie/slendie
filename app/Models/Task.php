@@ -1,10 +1,10 @@
 <?php
 namespace App\Models;
 
-use App\ModelOld;
+use Slendie\Framework\Database\Model;
 
 class Task extends ModelOld
 {
-    protected $log_timestamp = true;
     protected $table = 'tasks';
+    protected $log_timestamp = true;
 }
