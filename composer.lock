@@ -104,7 +104,11 @@
             "dist": {
                 "type": "path",
                 "url": "packages/slendie/tools",
+<<<<<<< HEAD
                 "reference": "37373bcba5dac71b8855a7b0aa283c110f900de4"
+=======
+                "reference": "6f6c586e437514c9ca446b43ad52a624a59805a2"
+>>>>>>> afe4a1562c2b619162a531b8073ba8b06fd1b250
             },
             "type": "library",
             "autoload": {
