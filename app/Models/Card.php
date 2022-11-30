@@ -1,13 +1,13 @@
 <?php
 namespace App\Models;
 
-use App\Model;
+use Slendie\Framework\Database\Model;
 use Slendie\Framework\Database\Sql;
 
 class Card extends Model
 {
-    protected $log_timestamp = true;
     protected $table = 'cards';
+    protected $log_timestamp = true;
 
     public function fromSlug( $slug )
     {
