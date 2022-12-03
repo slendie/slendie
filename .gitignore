@@ -8,6 +8,8 @@
 *.dev.json
 *.prod.json
 tests.html
+test.php
+loader.html
 /packages
 /vendor
 /resources/cache
