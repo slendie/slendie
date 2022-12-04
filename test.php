@@ -12,20 +12,26 @@ $env->load();
 $vars = $env->all();
 
 /* Test Loader */
-$loader = new Loader( 'view', 'packages/Slendie/Framework/tests', 'tpl.php' );
+$loader = new Loader( 'view', 'packages/Slendie/Framework/tests/views', 'tpl.php' );
 $loader->parse();
 $sections = $loader->getSections();
 
 file_put_contents('loader.html', $loader->getContent());
 
 /* Test View Transpiler */
-$content = file_get_contents('packages/slendie/framework/tests/transpiler.tpl.php');
+$content = file_get_contents('packages/slendie/framework/tests/views/transpiler_route.tpl.php');
 
-$transpiler = new Transpiler( $content );
+/*$transpiler = new Transpiler( $content );
 $matches = $transpiler->parse();
-$transpiled = $transpiler->getContent();
+$transpiled = $transpiler->getContent();*/
 
-echo "Transpiled:\n";
-echo $transpiled;
+echo Transpiler::ROUTE_PATTERN . PHP_EOL;
+
+preg_match_all( Transpiler::ROUTE_PATTERN, $content, $matches );
+
+var_dump($matches);
+
+/*echo "Transpiled:\n";
+echo $transpiled;*/
 
 // dd( $vars );

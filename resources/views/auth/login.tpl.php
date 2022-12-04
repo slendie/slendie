@@ -10,16 +10,16 @@
         <div class="mb-3">
           <label for="inputEmail" class="sr-only">Email address</label>
           <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required autofocus>
-          {% if (has_error('email')) %}
+            @if( has_error('email') )
           <p class="small text-danger">{{ error('email') }}</p>
-          {% endif %}
+            @endif
         </div>
         <div class="mb-3">
           <label for="inputPassword" class="sr-only">Password</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-          {% if (has_error('password')) %}
+            @if( has_error('password') )
           <p class="small text-danger">{{ error('password') }}</p>
-          {% endif %}
+            @endif
         </div>
         <div class="checkbox mb-3">
           <label>
