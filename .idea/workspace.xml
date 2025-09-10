@@ -5,19 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51d41035-dfe9-4758-9253-023415b23bb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/slendie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/slendie.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.phpunit.result.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.phpunit.result.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/http/controllers/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/http/controllers/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/alert.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/alert.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/form_errors.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/form_errors.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/slendie.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/storage/slendie.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Faker/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Faker/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Faker/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Faker/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/Routing/RouteCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/Routing/RouteCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Loader.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Loader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Transpiler.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Transpiler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/helpers/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/helpers/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/DispatcherTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouteTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouterTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouterTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/TranspilerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/TranspilerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/ViewTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/ViewTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if_expected.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if_expected.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_route_expected.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_route_expected.tpl.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,33 +79,29 @@
       <path value="$PROJECT_DIR$/packages/Slendie/Tools/vendor/composer" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2yeZUzDbk5R3aijKI3Z2jNUKvLw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/refactoring",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/refactoring&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
-      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
-      <method v="2" />
-    </configuration>
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
@@ -111,8 +110,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PS-251.23774.466" />
-        <option value="bundled-php-predefined-a98d8de5180a-aaeaa8632555-com.jetbrains.php.sharedIndexes-PS-251.23774.466" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PS-252.23892.419" />
+        <option value="bundled-php-predefined-a98d8de5180a-c72577f2c82f-com.jetbrains.php.sharedIndexes-PS-252.23892.419" />
       </set>
     </attachedChunks>
   </component>
@@ -124,6 +123,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750197018568</updated>
       <workItem from="1750197019628" duration="761000" />
+      <workItem from="1754937908181" duration="3013000" />
     </task>
     <servers />
   </component>

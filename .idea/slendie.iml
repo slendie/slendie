@@ -10,6 +10,12 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Framework/src" isTestSource="false" packagePrefix="Slendie\Framework\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Tools/src" isTestSource="false" packagePrefix="Slendie\Tools\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Crawler/src" isTestSource="false" packagePrefix="Slendie\Crawler\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Faker/src/Faker" isTestSource="false" packagePrefix="Faker\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Faker/test/Faker" isTestSource="true" packagePrefix="Faker\Test\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Framework/src" isTestSource="false" packagePrefix="Slendie\Framework\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/Slendie/Tools/src" isTestSource="false" packagePrefix="Slendie\Tools\" />
       <excludeFolder url="file://$MODULE_DIR$/packages/Slendie/Crawler/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/packages/Slendie/Framework/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/packages/Slendie/Tools/vendor/composer" />
