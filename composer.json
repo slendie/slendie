@@ -10,6 +10,16 @@
         }
     ],
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/slendie/framework"
+        },
+        {
+            "type": "path",
+            "url": "packages/slendie/tools"
+        }
+    ],
     "require": {
         "phpunit/phpunit": "9.5.x-dev",
         "slendie/framework": "dev-develop",

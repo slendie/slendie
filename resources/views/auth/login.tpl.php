@@ -1,9 +1,7 @@
 @extends('auth.layouts.auth')
 @section('content')
-  <div class="row">
-    <div class="col-12">
+  <div class="alert-box">
     @include('partials.alert')
-    </div>
   </div>
   <div class="row">
     <div class="col-12 signin">
