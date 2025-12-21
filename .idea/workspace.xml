@@ -1,133 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="51d41035-dfe9-4758-9253-023415b23bb2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Faker/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Faker/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Faker/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Faker/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/Routing/RouteCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/Routing/RouteCollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Cache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Loader.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Loader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Transpiler.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/Transpiler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/View/View.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/src/helpers/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/src/helpers/view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/DispatcherTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouteTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouterTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/RouterTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/TranspilerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/TranspilerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/ViewTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/ViewTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if_expected.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_if_expected.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_route_expected.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/Slendie/Framework/tests/views/transpiler_route_expected.tpl.php" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ComposerConfigs">
-    <option name="configs">
-      <option value="$PROJECT_DIR$/packages/Slendie/Faker/composer.json" />
-      <option value="$PROJECT_DIR$/packages/Slendie/Crawler/composer.json" />
-      <option value="$PROJECT_DIR$/packages/Slendie/Framework/composer.json" />
-      <option value="$PROJECT_DIR$/packages/Slendie/Tools/composer.json" />
-    </option>
-  </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../laragon/bin/php/php-8.3.6-Win32-vs16-x64/php.exe">
-    <include_path>
-      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
-      <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
-      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
-      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
-      <path value="$PROJECT_DIR$/vendor/slendie/tools" />
-      <path value="$PROJECT_DIR$/vendor/slendie/crawler" />
-      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
-      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
-      <path value="$PROJECT_DIR$/packages/Slendie/Crawler/vendor/composer" />
-      <path value="$PROJECT_DIR$/packages/Slendie/Framework/vendor/composer" />
-      <path value="$PROJECT_DIR$/packages/Slendie/Tools/vendor/composer" />
-    </include_path>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="2yeZUzDbk5R3aijKI3Z2jNUKvLw" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/refactoring&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">{}</component>
   <component name="RunManager">
-    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
+      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
       <method v="2" />
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-PS-252.23892.419" />
-        <option value="bundled-php-predefined-a98d8de5180a-c72577f2c82f-com.jetbrains.php.sharedIndexes-PS-252.23892.419" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="51d41035-dfe9-4758-9253-023415b23bb2" name="Changes" comment="" />
-      <created>1750197018568</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1750197018568</updated>
-      <workItem from="1750197019628" duration="761000" />
-      <workItem from="1754937908181" duration="3013000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <configuration name="Main" type="PestRunConfigurationType">
+      <PestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="ConfigurationFile" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
   </component>
 </project>

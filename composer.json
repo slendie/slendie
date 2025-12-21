@@ -1,39 +1,50 @@
 {
     "name": "slendie/slendie",
-    "description": "Micro PHP framework for simple projects",
+    "description": "Starter kit para pequenos projetos em PHP",
     "type": "project",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Luciano Closs",
-            "email": "lcloss@lcloss.dev"
-        }
-    ],
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "packages/slendie/framework"
-        },
-        {
-            "type": "path",
-            "url": "packages/slendie/tools"
-        }
-    ],
-    "require": {
-        "slendie/framework": "@dev",
-        "slendie/tools": "@dev",
-        "slendie/crawler": "dev-develop"
-    },
+    "keywords": ["framework", "mvc", "php", "starter", "template"],
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Slendie\\": "src/"
         },
         "files": [
             "helpers/functions.php"
         ]
     },
+    "authors": [
+        {
+            "name": "Luciano Closs",
+            "email": "lcloss@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "pest",
+        "install": "php scripts/install.php",
+        "migrate": "php scripts/migrate.php",
+        "migrate:status": "php scripts/migrate.php status",
+        "migrate:rollback": "php scripts/migrate.php rollback",
+        "migrate:reset": "php scripts/migrate.php reset",
+        "post-create-project-cmd": [
+            "@php -r \"copy('.env.example', '.env');\"",
+            "@php scripts/setup.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.4",
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^7.0"
+    },
     "require-dev": {
-        "phpunit/phpunit": "10.0.x-dev"
+        "pestphp/pest": "^2.0"
     }
 }
