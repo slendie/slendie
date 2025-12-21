@@ -4,6 +4,7 @@ use Slendie\Framework\Routing\Router;
 
 Router::get('/', 'AppController@index')->name('home');
 Router::get('/login', 'Auth\AuthController@login')->name('login');
+Router::post('/login', 'Auth\AuthController@signin')->name('signin');
 
 Router::get('/admin', 'Admin\AdminController@index')->middleware(['auth'])->name('admin');
 

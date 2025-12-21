@@ -4,6 +4,7 @@ namespace App\Middlewares;
 use App\Middleware;
 use App\Models\User;
 use Slendie\Framework\Routing\Router;
+use Slendie\Framework\Session\Session;
 
 
 class AuthMiddleware extends Middleware
