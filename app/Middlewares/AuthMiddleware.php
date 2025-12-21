@@ -13,10 +13,12 @@ class AuthMiddleware extends Middleware
     {
         if ( !auth() ) {
             return false;
+            // return redirect('/login');
         } else {
             $user = User::find( Session::get('logged_user') );
             if ( !$user ) {
                 return false;
+                // return redirect('/login');
             }
         }
         
@@ -26,5 +28,10 @@ class AuthMiddleware extends Middleware
     public static function down()
     {
         return true;
+    }
+
+    public static function fail()
+    {
+        redirect('login');
     }
 }

@@ -12,4 +12,9 @@ abstract class Middleware
     {
 
     }
+
+    public static function fail()
+    {
+        
+    }
 }
