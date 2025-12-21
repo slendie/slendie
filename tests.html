@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2rem;
+                background-color: #fff;
+                color: #000;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: larger;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: larger;
+                margin: 0;
+                padding: 0.5rem 0;
+            }
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                margin-bottom: 2rem;
+                padding-left: 1rem;
+                text-indent: -1rem;
+            }
+
+            .success:before {
+                color: #4e9a06;
+                content: '✓';
+                padding-right: 0.5rem;
+            }
+
+            .defect {
+                color: #a40000;
+            }
+
+            .defect:before {
+                color: #a40000;
+                content: '✗';
+                padding-right: 0.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Connection</h2>
+        <ul>
+            <li class="success">Can be singleton</li>
+            <li class="success">Can connect to database</li>
+            <li class="success">Can return pdo statement</li>
+            <li class="success">Can exec delete</li>
+            <li class="success">Can exec insert</li>
+            <li class="success">Can query single select</li>
+            <li class="success">Can exec prepare select</li>
+            <li class="success">Can exec prepare select quotation</li>
+            <li class="success">Can exec prepare insert</li>
+            <li class="success">Can exec prepare update</li>
+            <li class="success">Can get error info</li>
+            <li class="success">Can get error code</li>
+            <li class="success">Can get error from catch</li>
+            <li class="success">Get last insert id</li>
+            <li class="success">Can rollback transaction</li>
+        </ul>
+        <h2>Database</h2>
+        <ul>
+            <li class="success">Can be singleton</li>
+            <li class="success">Can select all users</li>
+            <li class="success">Can select single user</li>
+            <li class="success">Can insert user</li>
+            <li class="success">Can update user</li>
+            <li class="success">Can delete user</li>
+            <li class="success">Can query sql</li>
+            <li class="success">Can exec sql</li>
+        </ul>
+        <h2>Environment</h2>
+        <ul>
+            <li class="success">Can get filename</li>
+            <li class="success">Can get key</li>
+            <li class="success">Can get key from section</li>
+            <li class="success">Can get key from environment</li>
+            <li class="success">Can get key from environment from section</li>
+            <li class="success">Can get array from environment</li>
+            <li class="success">Can get from helper function</li>
+            <li class="success">Can get from environment variable</li>
+        </ul>
+        <h2>Loader</h2>
+        <ul>
+            <li class="success">Can define path</li>
+            <li class="success">Can define extension</li>
+            <li class="success">Can parse extends</li>
+            <li class="success">Can parse sections</li>
+            <li class="success">Can parse include</li>
+            <li class="success">Can parse content</li>
+        </ul>
+        <h2>Model</h2>
+        <ul>
+            <li class="success">Can make model</li>
+            <li class="success">Can extended model</li>
+            <li class="success">Can extended static model</li>
+            <li class="success">Can preserve table</li>
+            <li class="success">Can make where</li>
+            <li class="success">Can select first</li>
+            <li class="success">Can multiple select with where</li>
+            <li class="success">Can single select with where and get</li>
+            <li class="success">Can single select with where and first</li>
+            <li class="success">Can call non static where</li>
+        </ul>
+        <h2>Sql</h2>
+        <ul>
+            <li class="success">Can make simple select</li>
+            <li class="success">Can make concatenated select</li>
+            <li class="success">Can make select where with value</li>
+            <li class="success">Can make select where without value</li>
+            <li class="success">Can make select where string</li>
+            <li class="success">Can make select with multiple where</li>
+            <li class="success">Can make select count</li>
+            <li class="success">Can make select group and order</li>
+            <li class="success">Can make insert</li>
+            <li class="success">Can make update</li>
+            <li class="success">Can make delete</li>
+            <li class="success">Can make join</li>
+            <li class="success">Can make union</li>
+        </ul>
+        <h2>Transpiler</h2>
+        <ul>
+            <li class="success">Can transpile if</li>
+            <li class="success">Can transpile for</li>
+            <li class="success">Can transpile for each</li>
+            <li class="success">Can transpile while</li>
+            <li class="success">Can transpile php</li>
+            <li class="success">Can transpile php block</li>
+            <li class="success">Can transpile asset</li>
+            <li class="defect">Can transpile route</li>
+            <li class="success">Can transpile echo</li>
+        </ul>
+        <h2>View</h2>
+        <ul>
+            <li class="success">Can render view</li>
+        </ul>
+    </body>
+</html>
