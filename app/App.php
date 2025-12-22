@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
-class App
+final class App
 {
     public function __construct()
     {

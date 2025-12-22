@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Script de configuração inicial após composer create-project
  */
@@ -21,8 +23,8 @@ if (!file_exists(BASE_PATH . '/.env')) {
 // 2. Gerar APP_KEY se necessário
 require_once BASE_PATH . '/vendor/autoload.php';
 
-\Slendie\Framework\Env::load(BASE_PATH . '/.env');
-$appKey = \Slendie\Framework\Env::get('APP_KEY');
+Slendie\Framework\Env::load(BASE_PATH . '/.env');
+$appKey = Slendie\Framework\Env::get('APP_KEY');
 
 if (empty($appKey)) {
     $newKey = bin2hex(random_bytes(32));

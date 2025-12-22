@@ -28,7 +28,7 @@
         "migrate:reset": "php scripts/migrate.php reset",
         "post-create-project-cmd": [
             "@php -r \"copy('.env.example', '.env');\"",
-            "@php scripts/setup.php"
+            "@php scripts/install.php"
         ]
     },
     "config": {
@@ -45,6 +45,8 @@
         "phpmailer/phpmailer": "^7.0"
     },
     "require-dev": {
-        "pestphp/pest": "^2.0"
+        "laravel/pint": "^1.26",
+        "pestphp/pest": "^2.0",
+        "phpstan/phpstan": "^2.1"
     }
 }

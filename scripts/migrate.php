@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Script de migração melhorado com feedback visual e opções CLI
  */
@@ -8,12 +10,13 @@ define('BASE_PATH', __DIR__ . '/..');
 require_once BASE_PATH . '/vendor/autoload.php';
 
 // Registra o autoloader customizado
-\Slendie\Framework\Autoloader::register(BASE_PATH);
+Slendie\Framework\Autoloader::register(BASE_PATH);
 
 // Define função global env() se não existir
 if (!function_exists('env')) {
-    function env($key, $default = null) { 
-        return \Slendie\Framework\Env::get($key, $default);
+    function env($key, $default = null)
+    {
+        return Slendie\Framework\Env::get($key, $default);
     }
 }
 
@@ -22,9 +25,9 @@ $envPath = BASE_PATH . '/.env';
 if (!file_exists($envPath)) {
     $envPath = BASE_PATH . '/.env.example';
 }
-\Slendie\Framework\Env::load($envPath);
+Slendie\Framework\Env::load($envPath);
 
-$app = new \App\App();
+$app = new App\App();
 $app->bootstrap();
 
 use Slendie\Framework\Migrator;
@@ -41,36 +44,42 @@ $colors = [
 ];
 
 // Detecta se está em Windows sem suporte a cores
-$isWindows = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
+$isWindows = mb_strtoupper(mb_substr(PHP_OS, 0, 3)) === 'WIN';
 if ($isWindows && !function_exists('sapi_windows_vt100_support')) {
     // Desabilita cores no Windows antigo
     $colors = array_fill_keys(array_keys($colors), '');
 }
 
-function color($text, $color, $colors) {
+function color($text, $color, $colors)
+{
     return $colors[$color] . $text . $colors['reset'];
 }
 
-function printHeader($colors) {
+function printHeader($colors)
+{
     echo color("╔════════════════════════════════════════╗\n", 'cyan', $colors);
     echo color("║     Slendie Migration Manager          ║\n", 'cyan', $colors);
     echo color("╚════════════════════════════════════════╝\n", 'cyan', $colors);
     echo "\n";
 }
 
-function printSuccess($message, $colors) {
+function printSuccess($message, $colors)
+{
     echo color("✓ ", 'green', $colors) . $message . "\n";
 }
 
-function printError($message, $colors) {
+function printError($message, $colors)
+{
     echo color("✗ ", 'red', $colors) . $message . "\n";
 }
 
-function printInfo($message, $colors) {
+function printInfo($message, $colors)
+{
     echo color("ℹ ", 'blue', $colors) . $message . "\n";
 }
 
-function printWarning($message, $colors) {
+function printWarning($message, $colors)
+{
     echo color("⚠ ", 'yellow', $colors) . $message . "\n";
 }
 
@@ -86,9 +95,9 @@ try {
         case 'migrate':
             printHeader($colors);
             printInfo("Executando migrações pendentes...\n", $colors);
-            
+
             $result = $migrator->run();
-            
+
             if ($result['success']) {
                 if ($result['executed'] > 0) {
                     printSuccess("Migrações executadas com sucesso!", $colors);
@@ -108,18 +117,18 @@ try {
         case 'status':
             printHeader($colors);
             printInfo("Status das migrações:\n", $colors);
-            
+
             $status = $migrator->status();
-            
+
             echo "\n";
             echo color("Total: {$status['total']} | ", 'cyan', $colors);
             echo color("Executadas: {$status['executed']} | ", 'green', $colors);
             echo color("Pendentes: {$status['pending']}\n", 'yellow', $colors);
             echo "\n";
-            
+
             foreach ($status['migrations'] as $migration) {
-                $statusIcon = $migration['executed'] 
-                    ? color('✓', 'green', $colors) 
+                $statusIcon = $migration['executed']
+                    ? color('✓', 'green', $colors)
                     : color('○', 'yellow', $colors);
                 $statusText = $migration['executed'] ? 'Executada' : 'Pendente';
                 echo "  {$statusIcon} {$migration['migration']} - {$statusText}\n";
@@ -129,12 +138,12 @@ try {
         case 'rollback':
             printHeader($colors);
             $steps = isset($options[0]) ? (int)$options[0] : 1;
-            
+
             printWarning("Atenção: Rollback removerá os registros das migrações do último batch.\n", $colors);
             printInfo("Fazendo rollback de {$steps} batch(es)...\n", $colors);
-            
+
             $result = $migrator->rollback($steps);
-            
+
             if ($result['success']) {
                 if ($result['rolled_back'] > 0) {
                     printSuccess("Rollback executado com sucesso!", $colors);
@@ -149,20 +158,20 @@ try {
             printHeader($colors);
             printError("ATENÇÃO: Isso removerá TODOS os registros de migrações!\n", $colors);
             printWarning("As tabelas criadas NÃO serão removidas, apenas os registros.\n", $colors);
-            
+
             echo "\n";
             echo "Digite 'yes' para confirmar: ";
             $handle = fopen("php://stdin", "r");
-            $line = trim(fgets($handle));
+            $line = mb_trim(fgets($handle));
             fclose($handle);
-            
-            if (strtolower($line) !== 'yes') {
+
+            if (mb_strtolower($line) !== 'yes') {
                 printInfo("Operação cancelada.\n", $colors);
                 exit(0);
             }
-            
+
             $result = $migrator->reset();
-            
+
             if ($result['success']) {
                 printSuccess("Reset executado com sucesso!", $colors);
                 echo color("  Registros removidos: {$result['deleted']}\n", 'green', $colors);
@@ -192,7 +201,7 @@ try {
             exit(1);
     }
 
-} catch (\Exception $e) {
+} catch (Exception $e) {
     printError("Erro: " . $e->getMessage(), $colors);
     echo "\n";
     echo color("Stack trace:\n", 'red', $colors);
