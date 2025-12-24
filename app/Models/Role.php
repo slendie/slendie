@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Slendie\Models\Model;
 
-class Role extends Model
+final class Role extends Model
 {
-    protected static $table = 'roles';
+    protected static string $table = 'roles';
 }

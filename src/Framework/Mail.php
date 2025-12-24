@@ -1,32 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Slendie\Framework;
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
+
 use function env;
 
-class Mail
+final class Mail
 {
-    public $smtp_server;
-    public $smtp_username;
-    public $smtp_password;
-    public $smtp_port;
-    public $from;
-    public $from_name;
+    public string $smtp_server;
+    public string $smtp_username;
+    public string $smtp_password;
+    public int $smtp_port;
+    public string $from;
+    public string $from_name;
 
 
-    public $to;
-    public $subject;
+    public string $to;
+    public string $subject;
 
-    private $mail;
+    private PHPMailer $mail;
 
     public function __construct()
     {
         $this->smtp_server = env('MAIL_HOST');
         $this->smtp_username = env('MAIL_USERNAME');
         $this->smtp_password = env('MAIL_PASSWORD');
-        $this->smtp_port = env('MAIL_PORT', 587);
+        $this->smtp_port = (int) env('MAIL_PORT', 587);
         $this->from = env('MAIL_FROM_ADDRESS');
         $this->from_name = env('MAIL_FROM_NAME');
 
@@ -38,7 +41,7 @@ class Mail
         $this->mail = new PHPMailer(true);
     }
 
-    public function send($to, $subject, $body, $isHtml = false)
+    public function send(string $to, string $subject, string $body, bool $isHtml = false): bool
     {
         try {
             //Server settings
@@ -49,9 +52,9 @@ class Mail
             $this->mail->SMTPAuth   = env('MAIL_AUTH', true);
             $this->mail->Username   = $this->smtp_username;
             $this->mail->Password   = $this->smtp_password;
-            if (strtolower(env('MAIL_ENCRYPTION')) == 'tls') {
+            if (mb_strtolower(env('MAIL_ENCRYPTION')) === 'tls') {
                 $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            } else if (strtolower(env('MAIL_ENCRYPTION')) == 'ssl') {
+            } elseif (mb_strtolower(env('MAIL_ENCRYPTION')) === 'ssl') {
                 $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             }
             $this->mail->Port       = $this->smtp_port;

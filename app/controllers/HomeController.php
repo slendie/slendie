@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use Slendie\Controllers\Controller;
 use Slendie\Framework\Blade;
 use Slendie\Framework\Env;
 
-class HomeController extends Controller
+final class HomeController extends Controller
 {
     public function index()
     {

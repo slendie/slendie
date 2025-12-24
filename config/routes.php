@@ -1,15 +1,11 @@
 <?php
+
+declare(strict_types=1);
 return [
     [
         'method' => 'GET',
         'path' => '/',
         'handler' => 'App\Controllers\HomeController@index',
-        'middlewares' => [],
-    ],
-    [
-        'method' => 'POST',
-        'path' => '/contato',
-        'handler' => 'App\Controllers\FormController@store',
         'middlewares' => [],
     ],
     [
@@ -21,9 +17,31 @@ return [
     ],
     [
         'method' => 'POST',
-        'path' => '/signin',
+        'path' => '/login',
         'handler' => 'App\Controllers\AuthController@signin',
-        'middlewares' => []
+        'middlewares' => [],
+        'name' => 'login.store'
+    ],
+    [
+        'method' => 'GET',
+        'path' => '/register',
+        'handler' => 'App\Controllers\AuthController@register',
+        'middlewares' => [],
+        'name' => 'register'
+    ],
+    [
+        'method' => 'POST',
+        'path' => '/register',
+        'handler' => 'App\Controllers\AuthController@store',
+        'middlewares' => [],
+        'name' => 'register.store'
+    ],
+    [
+        'method' => 'GET',
+        'path' => '/reset-password',
+        'handler' => 'App\Controllers\AuthController@resetPassword',
+        'middlewares' => [],
+        'name' => 'password.request'
     ],
     [
         'method' => 'POST',

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Slendie\Framework\Database;
 use Slendie\Models\Model;
 
-class User extends Model
+final class User extends Model
 {
-    protected static $table = 'users';
+    protected static string $table = 'users';
 
-    public static function hasPermission($userId, $permission)
+    public static function hasPermission(int|string $userId, string $permission): bool
     {
         $pdo = Database::getConnection();
         $sql = 'SELECT COUNT(*) FROM permissions p '

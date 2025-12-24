@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use Slendie\Controllers\Controller;
 use Slendie\Framework\CSRF;
 
-class FormController extends Controller
+final class FormController extends Controller
 {
     public function store()
     {
@@ -51,7 +53,7 @@ class FormController extends Controller
 
         unset($_SESSION['form_errors']);
         unset($_SESSION['old_input']);
-        
+
         // Aqui você pode processar o formulário (salvar no banco, enviar email, etc.)
         // Por enquanto, apenas armazena em sessão para exibir mensagem de sucesso
         $_SESSION['form_success'] = 'Mensagem enviada com sucesso!';

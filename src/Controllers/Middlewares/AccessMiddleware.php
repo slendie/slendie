@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Slendie\Controllers\Middlewares;
 
 use App\Models\User;
 
-class AccessMiddleware
+final class AccessMiddleware
 {
     private $permission;
 

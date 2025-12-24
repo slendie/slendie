@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
-class App
+final class App
 {
     public function __construct()
     {
@@ -16,12 +18,7 @@ class App
             session_start();
         }
 
-        // Define base path
-        if (!defined('BASE_PATH')) {
-            define('BASE_PATH', dirname(__DIR__));
-        }
-
-        // Load environment variables
+             // Load environment variables
         $envPath = BASE_PATH . '/.env';
         if (!file_exists($envPath)) {
             $envPath = BASE_PATH . '/.env.example';

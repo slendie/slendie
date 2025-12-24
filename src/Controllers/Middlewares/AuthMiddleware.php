@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Slendie\Controllers\Middlewares;
 
-class AuthMiddleware
+final class AuthMiddleware
 {
     public function handle($request)
     {
