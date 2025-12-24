@@ -1,0 +1,17 @@
+# Normalize line endings
+* text=auto
+
+# PHP files
+*.php text eol=lf
+
+# Config files
+*.json text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

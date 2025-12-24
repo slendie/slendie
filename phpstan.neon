@@ -1,0 +1,18 @@
+parameters:
+    level: 5
+    paths:
+        - app
+        - src
+        - tests
+    excludePaths:
+        - src/legacy/*
+
+    ignoreErrors:
+        # Adicione erros específicos que deseja ignorar
+
+    treatPhpDocTypesAsCertain: false
+
+    bootstrapFiles:
+        - config/constants.php
+
+
