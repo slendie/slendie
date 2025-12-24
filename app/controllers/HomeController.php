@@ -16,20 +16,17 @@ final class HomeController extends Controller
         // Layout is specified in the view using @extends directive
         $blade = new Blade();
 
-        // Get form errors and success message from session
-        $formErrors = $_SESSION['form_errors'] ?? [];
-        $formSuccess = $_SESSION['form_success'] ?? null;
-
-        // Clear session messages after retrieving them
-        unset($_SESSION['form_errors']);
-        unset($_SESSION['form_success']);
-
         $html = $blade->render('home', [
             'app_name' => Env::get('APP_NAME', 'PHP MVC'),
             'year' => date('Y'),
-            'form_errors' => $formErrors,
-            'form_success' => $formSuccess,
         ]);
+        echo $html;
+    }
+
+    public function docs()
+    {
+        $blade = new Blade();
+        $html = $blade->render('docs');
         echo $html;
     }
 }
