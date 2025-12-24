@@ -10,6 +10,12 @@ return [
     ],
     [
         'method' => 'GET',
+        'path' => '/docs',
+        'handler' => 'App\Controllers\HomeController@docs',
+        'middlewares' => [],
+    ],
+    [
+        'method' => 'GET',
         'path' => '/login',
         'handler' => 'App\Controllers\AuthController@login',
         'middlewares' => [],
