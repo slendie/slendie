@@ -1,46 +1,40 @@
 <?php
-namespace App;
 
-use Slendie\Framework\Routing\Request;
-use Slendie\Framework\Routing\Router;
-use Slendie\Framework\Database\Connection;
-use Slendie\Framework\Environment\Environment;
+declare(strict_types=1);
+
+namespace App;
 
 final class App
 {
-    private static $instance = NULL;
-    public $request = NULL;
-    public $conn = NULL;
-    public $env = NULL;
-
-    private function __construct()
+    public function __construct()
     {
-        // Catch Request
-        $this->request = Request::getInstance();
-        $this->env = Environment::getInstance();
-        $this->env->load();
+        // Application initialization code can go here
     }
 
-    public static function getInstance()
+    public function bootstrap()
     {
-        if ( is_null(self::$instance) ) {
-            self::$instance = new App();
+        // Start session
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
-        return self::$instance;
-    }
 
-    public function run() 
-    {
-        Router::resolve();
-    }
-
-    public function db()
-    {
-        if ( is_null($this->conn) ) {
-            $this->conn = Connection::getInstance();
-            $this->conn->setOptions( env('DATABASE') );
-            $this->conn->connect();
+             // Load environment variables
+        $envPath = BASE_PATH . '/.env';
+        if (!file_exists($envPath)) {
+            $envPath = BASE_PATH . '/.env.example';
         }
-        return $this->conn;
+        \Slendie\Framework\Env::load($envPath);
+
+        // Load app configuration
+        $app = require BASE_PATH . '/config/app.php';
+        date_default_timezone_set($app['timezone']);
+        ini_set('display_errors', $app['debug'] ? '1' : '0');
+    }
+
+    public function run()
+    {
+        $routes = require BASE_PATH . '/config/routes.php';
+        $router = new \Slendie\Framework\Router($routes);
+        $router->dispatch();
     }
 }

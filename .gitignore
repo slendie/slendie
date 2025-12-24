@@ -1,15 +1,40 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build assets
+public/assets/
+
+# Environment
 .env
-.env.*
-*.ps1
-*.local
-*.prod
-*.dev
-*.local.json
-*.dev.json
-*.prod.json
-tests.html
-test.php
-loader.html
-/packages
-/vendor
-/resources/cache
+.env.local
+.env.development.local
+.env.test
+.env.test.local
+.env.production.local
+.env.development
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Logs
+*.log
+logs/
+
+# Cache
+cache/
+tmp/
