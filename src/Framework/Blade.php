@@ -86,6 +86,9 @@ final class Blade
     public function render(string $view, array $data = [], string|null $layout = null, array $layoutData = []): string
     {
         $viewPath = $this->path($view);
+        if (!file_exists($viewPath)) {
+            throw new Exception('View not found: ' . $viewPath);
+        }
         $viewContent = file_get_contents($viewPath);
 
         // Extract @extends directive from view content
@@ -342,7 +345,11 @@ final class Blade
     {
         if (is_numeric($part)) {
             // Convert to int or float as appropriate
-            return ((int) $part === $part) ? (int) $part : (float) $part;
+            // Check if the string contains a decimal point to determine type
+            if (strpos($part, '.') !== false) {
+                return (float) $part;
+            }
+            return (int) $part;
         }
 
         // Return as string (could be a variable name)
@@ -1594,7 +1601,7 @@ final class Blade
      * @param int $startPos Starting position after @error header
      * @return int|false Position of the matching @enderror or false if not found
      */
-    private function findMatchingEnderror(string $content, int $startPos): int
+    private function findMatchingEnderror(string $content, int $startPos): int|false
     {
         $pos = $startPos;
         $depth = 1;
@@ -1718,12 +1725,12 @@ final class Blade
                 $errorMessage = $errors[$fieldName];
 
                 // Add $message variable to data for use within the block
-                $errorData = $data;
-                $errorData['message'] = $errorMessage;
+                // Merge to ensure all data is available, including the message
+                $errorData = array_merge($data, ['message' => $errorMessage]);
 
                 // Process block content with error data
-                $processedBlock = $this->processDirectives($blockContent, $errorData);
-                $processedBlock = $this->processVariables($processedBlock, $errorData);
+                // Use compileContentWithoutError to avoid recursion
+                $processedBlock = $this->compileContentWithoutError($blockContent, $errorData);
                 $output .= $processedBlock;
             }
 
@@ -1768,9 +1775,10 @@ final class Blade
 
         // Pattern to match INLINE @error('field') content @enderror (NO newlines allowed)
         // This distinguishes inline (same line) from block (multiple lines) @error
+        // Using [ \t]* instead of \s* to avoid matching newlines
         // [^\n\r@]* captures any character except newline and @ to avoid matching across lines
         return preg_replace_callback(
-            '/@error\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)\s*([^\n\r@]*?)\s*@enderror/',
+            '/@error[ \t]*\([ \t]*[\'"]([^\'"]+)[\'"][ \t]*\)[ \t]*([^\n\r@]*)[ \t]*@enderror/',
             function ($matches) use ($errors) {
                 $fieldName = mb_trim($matches[1]);
                 $blockContent = mb_trim($matches[2]); // Content between @error and @enderror
@@ -1869,6 +1877,36 @@ final class Blade
         $content = $this->processDirectives($content, $data);
 
         // Then process variables in the remaining content
+        $content = $this->processVariables($content, $data);
+
+        return $content;
+    }
+
+    /**
+     * Compile template content without processing @error directives
+     *
+     * Used internally to avoid recursion when processing @error blocks.
+     * Processes all directives except @error, then processes variables.
+     *
+     * @param string $content The raw template content
+     * @param array $data Data to pass to the template (passed by reference)
+     * @return string The compiled content
+     */
+    private function compileContentWithoutError(string $content, array &$data): string
+    {
+        // Process directives excluding @error to avoid recursion
+        $content = $this->processInclude($content, $data);
+        $content = $this->processForeach($content, $data);
+        $content = $this->processIf($content, $data);
+        $content = $this->processInlineError($content, $data);
+        // Skip processError to avoid recursion
+        $content = $this->processVite($content, $data);
+        $content = $this->processAsset($content, $data);
+        $content = $this->processCsrf($content, $data);
+        $content = $this->processYield($content, $data);
+        $content = $this->processSections($content);
+
+        // Then process variables
         $content = $this->processVariables($content, $data);
 
         return $content;

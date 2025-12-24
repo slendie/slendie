@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 return [
     'name' => env('APP_NAME', 'PHP MVC'),
     'debug' => filter_var(env('DEBUG', 'true'), FILTER_VALIDATE_BOOLEAN),

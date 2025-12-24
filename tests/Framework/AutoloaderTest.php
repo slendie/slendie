@@ -88,7 +88,7 @@ it('usa basePath customizado quando fornecido', function () {
     $testDir = $customPath . '/app/models';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestModel';
+    $testClass = 'AutoloaderTestModel';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -153,7 +153,7 @@ it('tenta todos os caminhos antes de retornar false', function () {
     $testDir = $tempPath . '/src/Models';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'LastPathTest';
+    $testClass = 'AutoloaderLastPathTest';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -178,7 +178,7 @@ it('carrega classe de app/controllers/middlewares/', function () {
     $testDir = $tempPath . '/app/controllers/middlewares';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestMiddleware';
+    $testClass = 'AutoloaderTestMiddleware';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -203,7 +203,7 @@ it('carrega classe de src/Framework/', function () {
     $testDir = $tempPath . '/src/Framework';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestFramework';
+    $testClass = 'AutoloaderTestFramework';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -228,7 +228,7 @@ it('carrega classe de src/Controllers/', function () {
     $testDir = $tempPath . '/src/Controllers';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestController';
+    $testClass = 'AutoloaderTestController';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -253,7 +253,7 @@ it('carrega classe de src/Controllers/Middlewares/', function () {
     $testDir = $tempPath . '/src/Controllers/Middlewares';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestWebMiddleware';
+    $testClass = 'AutoloaderTestWebMiddleware';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -278,7 +278,7 @@ it('carrega classe de src/Models/', function () {
     $testDir = $tempPath . '/src/Models';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestModel';
+    $testClass = 'AutoloaderTestModelSrc';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 
@@ -303,7 +303,7 @@ it('carrega classe de src/ quando existe', function () {
     $testDir = $tempPath . '/src';
     mkdir($testDir, 0777, true);
 
-    $testClass = 'TestSrc';
+    $testClass = 'AutoloaderTestSrc';
     $testFile = $testDir . '/' . $testClass . '.php';
     file_put_contents($testFile, "<?php\nclass {$testClass} {}\n");
 

@@ -8,16 +8,27 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 it('obtém método HTTP da requisição', function () {
     $request = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
+    $request = $response['request'];
+    $original = $response['original'];
     expect($request->method())->toBe('GET');
 
-    $request = simulateRequest('POST', '/');
+    // $request = simulateRequest('POST', '/');
+    $response = setupRequest('POST', '/');
+    $request = $response['request'];
     expect($request->method())->toBe('POST');
 
-    $request = simulateRequest('PUT', '/');
+    // $request = simulateRequest('PUT', '/');
+    $response = setupRequest('PUT', '/');
+    $request = $response['request'];
     expect($request->method())->toBe('PUT');
 
-    $request = simulateRequest('DELETE', '/');
+    // $request = simulateRequest('DELETE', '/');
+    $response = setupRequest('DELETE', '/');
+    $request = $response['request'];
     expect($request->method())->toBe('DELETE');
+
+    
 });
 
 it('usa GET como método padrão quando REQUEST_METHOD não está definido', function () {

@@ -474,11 +474,11 @@ it('hasPermission() funciona com múltiplos roles e permissões complexas', func
     expect(User::hasPermission($editorUserId, 'delete_posts'))->toBeFalse();
 });
 
-it('hasPermission() retorna false quando userId é null', function () {
-    expect(User::hasPermission(null, 'view_dashboard'))->toBeFalse();
-});
+it('hasPermission() retorna TypeError quando userId é null', function () {
+    User::hasPermission(null, 'view_dashboard');
+})->throws(TypeError::class);
 
-it('hasPermission() retorna false quando permission é null', function () {
+it('hasPermission() retorna TypeError quando permission é null', function () {
     $roleId = Role::create(['name' => 'admin']);
     $userId = User::create([
         'name' => 'Test User',
@@ -487,8 +487,8 @@ it('hasPermission() retorna false quando permission é null', function () {
         'role_id' => $roleId
     ]);
 
-    expect(User::hasPermission($userId, null))->toBeFalse();
-});
+    User::hasPermission($userId, null);
+})->throws(TypeError::class);
 
 it('hasPermission() retorna false quando permission é string vazia', function () {
     $roleId = Role::create(['name' => 'admin']);

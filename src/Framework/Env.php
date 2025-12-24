@@ -69,7 +69,7 @@ final class Env
      * @param mixed $default Valor padrão a ser retornado se a variável não existir
      * @return mixed Valor da variável de ambiente ou o valor padrão
      */
-    public static function get($key, $default = null)
+    public static function get(string $key, mixed $default = null)
     {
         if (array_key_exists($key, self::$vars)) {
             return self::$vars[$key];
@@ -90,7 +90,7 @@ final class Env
      * @param string $value Valor a ser atribuído à variável
      * @return void
      */
-    public static function set($key, $value): void
+    public static function set(string $key, mixed $value): void
     {
         self::$vars[$key] = $value;
         $_ENV[$key] = $value;

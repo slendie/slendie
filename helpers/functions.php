@@ -10,7 +10,7 @@ if (! function_exists('env')) {
      * @param mixed $default The default value if the variable is not set
      * @return mixed The value of the environment variable or the default value
      */
-    function env($key, $default = null)
+    function env(string $key, mixed $default = null)
     {
         return Slendie\Framework\Env::get($key, $default);
     }

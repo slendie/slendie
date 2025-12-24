@@ -299,8 +299,15 @@ it('valida com hash_equals para prevenir timing attacks', function () {
     // Gera token
     $token = CSRF::token();
 
+    // Verifica o últimmo caracter do $token
+    $lastCharacter = mb_substr($token, -1);
+
     // Cria token similar mas diferente (um caractere diferente)
-    $similarToken = mb_substr($token, 0, -1) . '0';
+    if ($lastCharacter === '0') {
+        $similarToken = mb_substr($token, 0, -1) . '5';
+    } else {
+        $similarToken = mb_substr($token, 0, -1) . '0';
+    }
 
     // Validação deve retornar false mesmo com token similar
     expect(CSRF::validate($similarToken))->toBeFalse();

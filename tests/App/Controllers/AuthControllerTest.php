@@ -6,7 +6,6 @@ use App\Controllers\AuthController;
 use App\Models\User;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
-require_once __DIR__ . '/../../functions.php';
 
 // Define BASE_PATH se não estiver definido
 if (!defined('BASE_PATH')) {

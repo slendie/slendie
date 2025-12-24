@@ -145,4 +145,29 @@ final class Request
         }
         return $headers;
     }
+
+    /**
+     * Método mágico para debug - retorna informações seguras quando o objeto é serializado
+     * Isso previne erros quando o Pest tenta exibir informações sobre objetos Request durante erros
+     */
+    public function __debugInfo(): array
+    {
+        return [
+            'method' => $this->method,
+            'path' => $this->path,
+            'query_count' => count($this->query),
+            'post_count' => count($this->post),
+            'files_count' => count($this->files),
+            'headers_count' => count($this->headers),
+        ];
+    }
+
+    /**
+     * Método mágico para conversão para string - retorna string simples para evitar problemas
+     * quando o Pest tenta exibir o objeto durante erros
+     */
+    public function __toString(): string
+    {
+        return sprintf('Request(%s %s)', $this->method, $this->path);
+    }
 }

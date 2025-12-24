@@ -13,4 +13,5 @@ it('renderiza a home com layout', function () {
     $out = ob_get_clean();
     expect($out)->toContain('Home');
     expect($out)->toContain('Item é 1');
+    expect($out)->toContain('Item não é 1');
 });

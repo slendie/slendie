@@ -29,7 +29,7 @@ final class Mail
         $this->smtp_server = env('MAIL_HOST');
         $this->smtp_username = env('MAIL_USERNAME');
         $this->smtp_password = env('MAIL_PASSWORD');
-        $this->smtp_port = env('MAIL_PORT', 587);
+        $this->smtp_port = (int) env('MAIL_PORT', 587);
         $this->from = env('MAIL_FROM_ADDRESS');
         $this->from_name = env('MAIL_FROM_NAME');
 

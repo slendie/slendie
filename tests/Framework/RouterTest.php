@@ -12,12 +12,6 @@ if (!defined('BASE_PATH')) {
     define('BASE_PATH', dirname(__DIR__, 2));
 }
 
-// Função auxiliar para restaurar requisição
-function restoreRequest($originalServer)
-{
-    $_SERVER = $originalServer;
-}
-
 it('inicializa com array de rotas', function () {
     $routes = [
         ['method' => 'GET', 'path' => '/', 'handler' => 'TestController@index']
@@ -199,7 +193,7 @@ it('dispatch chama handler para rota exata', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -209,7 +203,7 @@ it('dispatch chama handler para rota exata', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch chama handler com parâmetros de rota', function () {
@@ -223,7 +217,7 @@ it('dispatch chama handler com parâmetros de rota', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users/123');
+    $response = setupRequest('GET', '/users/123');
 
     $router = new Router($routes);
 
@@ -235,7 +229,7 @@ it('dispatch chama handler com parâmetros de rota', function () {
     expect(TestController::$calledArgs)->toHaveCount(1);
     expect(TestController::$calledArgs[0])->toBe('123');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch chama handler com múltiplos parâmetros', function () {
@@ -249,7 +243,7 @@ it('dispatch chama handler com múltiplos parâmetros', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users/123/edit/update');
+    $response = setupRequest('GET', '/users/123/edit/update');
 
     $router = new Router($routes);
 
@@ -262,7 +256,7 @@ it('dispatch chama handler com múltiplos parâmetros', function () {
     expect(TestController::$calledArgs[0])->toBe('123');
     expect(TestController::$calledArgs[1])->toBe('update');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch retorna 404 quando rota não é encontrada', function () {
@@ -274,7 +268,7 @@ it('dispatch retorna 404 quando rota não é encontrada', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/non-existent');
+    $response = setupRequest('GET', '/non-existent');
 
     $router = new Router($routes);
 
@@ -285,7 +279,7 @@ it('dispatch retorna 404 quando rota não é encontrada', function () {
     expect($output)->toBe('Not Found');
     expect(http_response_code())->toBe(404);
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch verifica método HTTP', function () {
@@ -300,7 +294,8 @@ it('dispatch verifica método HTTP', function () {
     ];
 
     // Tenta com GET (não deve chamar)
-    $originalServer = simulateRequest('GET', '/users');
+    $response = setupRequest('GET', '/users');
+    $original = $response['original'];
 
     $router = new Router($routes);
 
@@ -312,7 +307,7 @@ it('dispatch verifica método HTTP', function () {
     expect($output)->toBe('Not Found');
 
     // Tenta com POST (deve chamar)
-    simulateRequest('POST', '/users');
+    $response = setupRequest('POST', '/users');
 
     ob_start();
     $router->dispatch();
@@ -320,7 +315,7 @@ it('dispatch verifica método HTTP', function () {
 
     expect(TestController::$calledMethod)->toBe('store');
 
-    restoreRequest($originalServer);
+    restoreRequest($original);
 });
 
 it('dispatch é case-insensitive para método HTTP', function () {
@@ -334,7 +329,7 @@ it('dispatch é case-insensitive para método HTTP', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -344,7 +339,7 @@ it('dispatch é case-insensitive para método HTTP', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch aceita handler como array', function () {
@@ -360,7 +355,7 @@ it('dispatch aceita handler como array', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -370,7 +365,7 @@ it('dispatch aceita handler como array', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch aceita handler como array com string de classe', function () {
@@ -384,7 +379,7 @@ it('dispatch aceita handler como array com string de classe', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -394,7 +389,7 @@ it('dispatch aceita handler como array com string de classe', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch aplica WebMiddleware', function () {
@@ -408,7 +403,7 @@ it('dispatch aplica WebMiddleware', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -419,7 +414,7 @@ it('dispatch aplica WebMiddleware', function () {
     // WebMiddleware deve ter sido aplicado (não lança erro)
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch passa apenas parâmetros que o método espera', function () {
@@ -433,7 +428,7 @@ it('dispatch passa apenas parâmetros que o método espera', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users/123/posts/456');
+    $response = setupRequest('GET', '/users/123/posts/456');
 
     $router = new Router($routes);
 
@@ -446,7 +441,7 @@ it('dispatch passa apenas parâmetros que o método espera', function () {
     expect(TestController::$calledArgs)->toHaveCount(1);
     expect(TestController::$calledArgs[0])->toBe('123');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch passa parâmetros na ordem correta', function () {
@@ -460,7 +455,7 @@ it('dispatch passa parâmetros na ordem correta', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users/123/edit/update');
+    $response = setupRequest('GET', '/users/123/edit/update');
 
     $router = new Router($routes);
 
@@ -473,7 +468,7 @@ it('dispatch passa parâmetros na ordem correta', function () {
     expect(TestController::$calledArgs[0])->toBe('123');
     expect(TestController::$calledArgs[1])->toBe('update');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch retorna resultado do handler', function () {
@@ -487,7 +482,7 @@ it('dispatch retorna resultado do handler', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -497,7 +492,7 @@ it('dispatch retorna resultado do handler', function () {
 
     expect($result)->toBe('index output');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch processa primeira rota que corresponde', function () {
@@ -516,7 +511,7 @@ it('dispatch processa primeira rota que corresponde', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users');
+    $response = setupRequest('GET', '/users');
 
     $router = new Router($routes);
 
@@ -528,7 +523,7 @@ it('dispatch processa primeira rota que corresponde', function () {
     expect(TestController::$calledMethod)->toBe('index');
     expect(TestController::$calledArgs)->not->toContain('show');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch ignora rotas com método diferente', function () {
@@ -547,7 +542,7 @@ it('dispatch ignora rotas com método diferente', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users');
+    $response = setupRequest('GET', '/users');
 
     $router = new Router($routes);
 
@@ -557,7 +552,7 @@ it('dispatch ignora rotas com método diferente', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch ignora rotas com path diferente', function () {
@@ -576,7 +571,7 @@ it('dispatch ignora rotas com path diferente', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users');
+    $response = setupRequest('GET', '/users');
 
     $router = new Router($routes);
 
@@ -586,7 +581,7 @@ it('dispatch ignora rotas com path diferente', function () {
 
     expect(TestController::$calledMethod)->toBe('create');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch lida com rotas sem middlewares', function () {
@@ -601,7 +596,7 @@ it('dispatch lida com rotas sem middlewares', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -611,7 +606,7 @@ it('dispatch lida com rotas sem middlewares', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch lida com handler que não é string nem array', function () {
@@ -623,7 +618,7 @@ it('dispatch lida com handler que não é string nem array', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -634,7 +629,7 @@ it('dispatch lida com handler que não é string nem array', function () {
     // Deve retornar 404 quando handler é inválido
     expect($output)->toBe('Not Found');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch lida com handler string sem @', function () {
@@ -646,7 +641,7 @@ it('dispatch lida com handler string sem @', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -657,7 +652,7 @@ it('dispatch lida com handler string sem @', function () {
     // Deve retornar 404 quando handler não tem @
     expect($output)->toBe('Not Found');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('parseRoutePattern escapa caracteres especiais no path', function () {
@@ -701,7 +696,7 @@ it('dispatch lida com rota na raiz', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/');
+    $response = setupRequest('GET', '/');
 
     $router = new Router($routes);
 
@@ -711,7 +706,7 @@ it('dispatch lida com rota na raiz', function () {
 
     expect(TestController::$calledMethod)->toBe('index');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch lida com parâmetros com caracteres especiais', function () {
@@ -725,7 +720,7 @@ it('dispatch lida com parâmetros com caracteres especiais', function () {
         ]
     ];
 
-    $originalServer = simulateRequest('GET', '/users/123-abc');
+    $response = setupRequest('GET', '/users/123-abc');
 
     $router = new Router($routes);
 
@@ -736,7 +731,7 @@ it('dispatch lida com parâmetros com caracteres especiais', function () {
     expect(TestController::$calledMethod)->toBe('show');
     expect(TestController::$calledArgs[0])->toBe('123-abc');
 
-    restoreRequest($originalServer);
+    restoreRequest($response['original']);
 });
 
 it('dispatch lida com múltiplas rotas na mesma lista', function () {
@@ -761,7 +756,8 @@ it('dispatch lida com múltiplas rotas na mesma lista', function () {
     ];
 
     // Testa primeira rota
-    $originalServer = simulateRequest('GET', '/users');
+    $response = setupRequest('GET', '/users');
+    $original = $response['original'];
 
     $router = new Router($routes);
 
@@ -773,7 +769,7 @@ it('dispatch lida com múltiplas rotas na mesma lista', function () {
 
     // Testa segunda rota
     TestController::reset();
-    simulateRequest('GET', '/posts');
+    $response = setupRequest('GET', '/posts');
 
     ob_start();
     $router->dispatch();
@@ -783,7 +779,7 @@ it('dispatch lida com múltiplas rotas na mesma lista', function () {
 
     // Testa terceira rota
     TestController::reset();
-    simulateRequest('POST', '/posts');
+    $response = setupRequest('POST', '/posts');
 
     ob_start();
     $router->dispatch();
@@ -791,5 +787,5 @@ it('dispatch lida com múltiplas rotas na mesma lista', function () {
 
     expect(TestController::$calledMethod)->toBe('store');
 
-    restoreRequest($originalServer);
+    restoreRequest($original);
 });

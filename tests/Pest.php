@@ -3,6 +3,9 @@
 declare(strict_types=1);
 define('PHPUNIT_TEST', true);
 
+// ini_set('display_errors', '1');
+// ini_set('error_reporting', E_ALL);
+
 // Define BASE_PATH se não estiver definido
 if (!defined('BASE_PATH')) {
     define('BASE_PATH', dirname(__DIR__));
@@ -26,6 +29,43 @@ Env::set('DB_DATABASE', ':memory:');
 Env::set('TIMEZONE', 'UTC');
 
 date_default_timezone_set('UTC');
+
+// Função auxiliar para limpar WebMiddleware
+function cleanupWebMiddleware()
+{
+    try {
+        $reflection = new ReflectionClass(\Slendie\Controllers\Middlewares\WebMiddleware::class);
+        $property = $reflection->getProperty('request');
+        $property->setAccessible(true);
+        $property->setValue(null, null);
+    } catch (Throwable $e) {
+        // Ignora erros de limpeza
+    }
+    
+    // Garante que $_SERVER não contenha objetos Request acidentalmente
+    // Isso pode acontecer se algum teste modificar $_SERVER incorretamente
+    // Também garante que $_SERVER seja sempre um array
+    if (!is_array($_SERVER)) {
+        $_SERVER = [];
+    } else {
+        foreach ($_SERVER as $key => $value) {
+            if (is_object($value)) {
+                unset($_SERVER[$key]);
+            }
+        }
+    }
+}
+
+// Limpa WebMiddleware após cada teste para evitar problemas durante o shutdown
+// Isso previne que objetos Request sejam serializados quando o Pest tenta exibir erros
+afterEach(function() {
+    cleanupWebMiddleware();
+});
+
+// Também limpa no início de cada teste para garantir estado limpo
+beforeEach(function() {
+    cleanupWebMiddleware();
+});
 
 // Função auxiliar para limpar sessão
 function clearSession()
@@ -67,6 +107,85 @@ function setupRequest($method = 'GET', $uri = '/', $post = [], $get = [])
     return ['request' => $request, 'original' => ['server' => $originalServer, 'get' => $originalGet, 'post' => $originalPost]];
 }
 
+// Função auxiliar para simular requisição HTTP
+// Retorna array com 'request' (objeto Request) e 'original' (valores originais para restore)
+function simulateRequest($method = 'GET', $uri = '/', $get = [], $post = [], $files = [], $headers = [], $jsonBody = null)
+{
+    // Salva valores originais
+    $originalServer = $_SERVER;
+    $originalGet = $_GET;
+    $originalPost = $_POST;
+    $originalFiles = $_FILES;
+
+    // Limpa
+    $_SERVER = [];
+    $_GET = [];
+    $_POST = [];
+    $_FILES = [];
+
+    // Configura método e URI
+    $_SERVER['REQUEST_METHOD'] = $method;
+    $_SERVER['REQUEST_URI'] = $uri;
+
+    // Configura GET
+    $_GET = $get;
+
+    // Configura POST
+    $_POST = $post;
+
+    // Configura FILES
+    $_FILES = $files;
+
+    // Configura headers
+    foreach ($headers as $key => $value) {
+        $headerKey = 'HTTP_' . mb_strtoupper(str_replace('-', '_', $key));
+        $_SERVER[$headerKey] = $value;
+    }
+
+    // Configura JSON body se fornecido
+    if ($jsonBody !== null) {
+        // Simula php://input usando um arquivo temporário
+        $tempFile = sys_get_temp_dir() . '/php_input_' . uniqid() . '.tmp';
+        file_put_contents($tempFile, is_string($jsonBody) ? $jsonBody : json_encode($jsonBody));
+
+        // Substitui file_get_contents('php://input') temporariamente
+        // Nota: Não podemos realmente substituir php://input, então vamos usar reflection
+        // ou criar um mock. Por enquanto, vamos testar sem JSON body primeiro.
+    }
+
+    $request = new Request();
+
+    // Restaura valores originais
+    $_SERVER = $originalServer;
+    $_GET = $originalGet;
+    $_POST = $originalPost;
+    $_FILES = $originalFiles;
+
+    // Retorna o objeto Request (compatibilidade com testes existentes)
+    // NOTA: Para restaurar valores originais, use restoreRequest() com os valores salvos
+    return $request;
+}
+
+
+// Função auxiliar para restaurar requisição
+// Mantida para compatibilidade com testes existentes
+function restoreRequest($originalServer)
+{
+    // Se $originalServer for um objeto Request, apenas limpa WebMiddleware
+    // Isso previne o erro "Cannot use object as array" quando $_SERVER é atribuído incorretamente
+    if (is_object($originalServer) && $originalServer instanceof \Slendie\Framework\Request) {
+        cleanupWebMiddleware();
+        return;
+    }
+    // Se for um array, restaura $_SERVER (comportamento original)
+    if (is_array($originalServer)) {
+        $_SERVER = $originalServer;
+    }
+    // Sempre limpa WebMiddleware para garantir que não haja objetos Request armazenados
+    cleanupWebMiddleware();
+}
+
+
 // Função auxiliar para restaurar ambiente
 function restoreEnvironment($original)
 {
@@ -85,15 +204,15 @@ function resetDatabaseConnection()
 }
 
 // Função auxiliar para configurar ambiente de teste
-function setupTestEnv()
+function setupTestEnv(string $connection = 'sqlite', string $database = ':memory:')
 {
     // Configura variáveis de ambiente para SQLite em memória
-    Env::set('DB_CONNECTION', 'sqlite');
-    Env::set('DB_DATABASE', ':memory:');
-    Env::set('DB_HOST', null);
-    Env::set('DB_PORT', null);
-    Env::set('DB_USER', null);
-    Env::set('DB_PASSWORD', null);
+    Env::set('DB_CONNECTION', $connection);
+    Env::set('DB_DATABASE', $database);
+    Env::set('DB_HOST', '');
+    Env::set('DB_PORT', '');
+    Env::set('DB_USER', '');
+    Env::set('DB_PASSWORD', '');
 
     // Reseta conexão do Database
     resetDatabaseConnection();
@@ -147,11 +266,25 @@ function captureOutputAndCode($callback)
 {
     ob_start();
     $code = null;
+    $output = '';
+    $result = null;
 
-    // Captura código HTTP usando output buffering
-    $result = $callback();
-
-    $output = ob_get_clean();
+    try {
+        // Captura código HTTP usando output buffering
+        $result = $callback();
+        $output = ob_get_clean();
+    } catch (Throwable $e) {
+        // Garante que o buffer seja limpo mesmo em caso de exceção
+        if (ob_get_level() > 0) {
+            $output = ob_get_clean();
+        }
+        throw $e;
+    } finally {
+        // Garante limpeza do buffer mesmo se ob_get_clean() falhar
+        while (ob_get_level() > 0) {
+            @ob_end_clean();
+        }
+    }
 
     // Tenta obter o código HTTP (pode não estar disponível em todos os ambientes)
     if (function_exists('http_response_code')) {
@@ -183,64 +316,8 @@ function removeDirectory($dir)
     }
 }
 
-// Função auxiliar para simular requisição HTTP
-function simulateRequest($method = 'GET', $uri = '/', $get = [], $post = [], $files = [], $headers = [], $jsonBody = null)
-{
-    // Salva valores originais
-    $originalServer = $_SERVER;
-    $originalGet = $_GET;
-    $originalPost = $_POST;
-    $originalFiles = $_FILES;
-
-    // Limpa
-    $_SERVER = [];
-    $_GET = [];
-    $_POST = [];
-    $_FILES = [];
-
-    // Configura método e URI
-    $_SERVER['REQUEST_METHOD'] = $method;
-    $_SERVER['REQUEST_URI'] = $uri;
-
-    // Configura GET
-    $_GET = $get;
-
-    // Configura POST
-    $_POST = $post;
-
-    // Configura FILES
-    $_FILES = $files;
-
-    // Configura headers
-    foreach ($headers as $key => $value) {
-        $headerKey = 'HTTP_' . mb_strtoupper(str_replace('-', '_', $key));
-        $_SERVER[$headerKey] = $value;
-    }
-
-    // Configura JSON body se fornecido
-    if ($jsonBody !== null) {
-        // Simula php://input usando um arquivo temporário
-        $tempFile = sys_get_temp_dir() . '/php_input_' . uniqid() . '.tmp';
-        file_put_contents($tempFile, is_string($jsonBody) ? $jsonBody : json_encode($jsonBody));
-
-        // Substitui file_get_contents('php://input') temporariamente
-        // Nota: Não podemos realmente substituir php://input, então vamos usar reflection
-        // ou criar um mock. Por enquanto, vamos testar sem JSON body primeiro.
-    }
-
-    $request = new Request();
-
-    // Restaura valores originais
-    $_SERVER = $originalServer;
-    $_GET = $originalGet;
-    $_POST = $originalPost;
-    $_FILES = $originalFiles;
-
-    return $request;
-}
-
 // Função auxiliar para simular JSON body (mais complexo, vamos testar separadamente)
-function simulateRequestWithJson($method = 'POST', $uri = '/', $jsonBody, $get = [], $post = [], $files = [], $headers = [])
+function simulateRequestWithJson($jsonBody, $method = 'POST', $uri = '/', $get = [], $post = [], $files = [], $headers = [])
 {
     // Salva valores originais
     $originalServer = $_SERVER;
@@ -287,6 +364,46 @@ function simulateRequestWithJson($method = 'POST', $uri = '/', $jsonBody, $get =
 
     return $request;
 }
+
+// Função auxiliar para configurar ambiente de email para testes
+function setupMailEnv($config = [])
+{
+    $defaults = [
+        'MAIL_HOST' => 'smtp.example.com',
+        'MAIL_USERNAME' => 'user@example.com',
+        'MAIL_PASSWORD' => 'password123',
+        'MAIL_PORT' => 587,
+        'MAIL_FROM_ADDRESS' => 'from@example.com',
+        'MAIL_FROM_NAME' => 'Test Sender',
+        'MAIL_AUTH' => 'true',
+        'MAIL_ENCRYPTION' => 'tls'
+    ];
+
+    $merged = array_merge($defaults, $config);
+
+    foreach ($merged as $key => $value) {
+        if ($key === 'MAIL_PORT') {
+            Env::set($key, (int) $value);
+        } else {
+            Env::set($key, (string) $value);
+        }
+        
+    }
+}
+
+// Função auxiliar para limpar configurações de email
+function cleanupMailEnv()
+{
+    $keys = [
+        'MAIL_HOST', 'MAIL_USERNAME', 'MAIL_PASSWORD', 'MAIL_PORT',
+        'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME', 'MAIL_AUTH', 'MAIL_ENCRYPTION'
+    ];
+
+    foreach ($keys as $key) {
+        Env::set($key, '');
+    }
+}
+
 
 // Classe de controller de teste que expõe métodos protegidos
 final class TestController extends Controller
@@ -372,3 +489,30 @@ final class TestController extends Controller
         return 'store output';
     }
 }
+
+// Registra error handler para limpar WebMiddleware quando há erros fatais
+// Isso previne que objetos Request sejam serializados durante o tratamento de erros
+set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    // Limpa WebMiddleware apenas para erros fatais
+    if (in_array($errno, [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_PARSE, E_RECOVERABLE_ERROR])) {
+        cleanupWebMiddleware();
+    }
+    // Retorna false para permitir que o handler padrão também processe o erro
+    return false;
+}, E_ALL);
+
+// Garantir que qualquer output buffering seja limpo no final
+// e que objetos Request armazenados no WebMiddleware sejam limpos
+// IMPORTANTE: Esta função deve ser registrada ANTES de qualquer outra shutdown function
+// para garantir que seja executada primeiro
+register_shutdown_function(function() {
+    // Limpa o WebMiddleware IMEDIATAMENTE para evitar que objetos Request sejam serializados
+    // durante o shutdown do Pest, especialmente quando há erros e o Pest tenta exibir informações
+    // Isso previne o erro "Cannot use object of type Request as array" no OutputFormatterStyle
+    cleanupWebMiddleware();
+    
+    // Limpa qualquer output buffering que possa ter ficado aberto
+    while (ob_get_level() > 0) {
+        @ob_end_flush();
+    }
+}, true); // true = registra no início da fila de shutdown functions

@@ -7,40 +7,6 @@ use Slendie\Framework\Env;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-// Função auxiliar para configurar ambiente de email para testes
-function setupMailEnv($config = [])
-{
-    $defaults = [
-        'MAIL_HOST' => 'smtp.example.com',
-        'MAIL_USERNAME' => 'user@example.com',
-        'MAIL_PASSWORD' => 'password123',
-        'MAIL_PORT' => '587',
-        'MAIL_FROM_ADDRESS' => 'from@example.com',
-        'MAIL_FROM_NAME' => 'Test Sender',
-        'MAIL_AUTH' => 'true',
-        'MAIL_ENCRYPTION' => 'tls'
-    ];
-
-    $merged = array_merge($defaults, $config);
-
-    foreach ($merged as $key => $value) {
-        Env::set($key, $value);
-    }
-}
-
-// Função auxiliar para limpar configurações de email
-function cleanupMailEnv()
-{
-    $keys = [
-        'MAIL_HOST', 'MAIL_USERNAME', 'MAIL_PASSWORD', 'MAIL_PORT',
-        'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME', 'MAIL_AUTH', 'MAIL_ENCRYPTION'
-    ];
-
-    foreach ($keys as $key) {
-        Env::set($key, null);
-    }
-}
-
 it('inicializa com configurações de ambiente', function () {
     setupMailEnv();
 
@@ -49,7 +15,7 @@ it('inicializa com configurações de ambiente', function () {
     expect($mail->smtp_server)->toBe('smtp.example.com');
     expect($mail->smtp_username)->toBe('user@example.com');
     expect($mail->smtp_password)->toBe('password123');
-    expect($mail->smtp_port)->toBe('587');
+    expect($mail->smtp_port)->toBe(587);
     expect($mail->from)->toBe('from@example.com');
     expect($mail->from_name)->toBe('Test Sender');
 
@@ -60,7 +26,7 @@ it('usa porta padrão 587 quando MAIL_PORT não está definido', function () {
     // Remove MAIL_PORT do ambiente
     cleanupMailEnv();
     setupMailEnv();
-    Env::set('MAIL_PORT', null); // Remove explicitamente
+    Env::set('MAIL_PORT', ''); // Remove explicitamente
 
     $mail = new Mail();
 
@@ -79,7 +45,7 @@ it('configura ini_set para SMTP', function () {
 
     // Verifica se ini_set foi chamado (não podemos verificar diretamente, mas podemos verificar as propriedades)
     expect($mail->smtp_server)->toBe('smtp.example.com');
-    expect($mail->smtp_port)->toBe('587');
+    expect($mail->smtp_port)->toBe(587);
     expect($mail->from)->toBe('from@example.com');
 
     cleanupMailEnv();
@@ -171,11 +137,11 @@ it('não configura SMTPSecure quando MAIL_ENCRYPTION não é tls ou ssl', functi
 });
 
 it('aceita diferentes portas SMTP', function () {
-    setupMailEnv(['MAIL_PORT' => '465']);
+    setupMailEnv(['MAIL_PORT' => 465]);
 
     $mail = new Mail();
 
-    expect($mail->smtp_port)->toBe('465');
+    expect($mail->smtp_port)->toBe(465);
 
     cleanupMailEnv();
 });
@@ -478,7 +444,7 @@ it('método send não cria AltBody quando isHtml é true', function () {
 it('configura ini_set com valores corretos', function () {
     setupMailEnv([
         'MAIL_HOST' => 'smtp.test.com',
-        'MAIL_PORT' => '465',
+        'MAIL_PORT' => 465,
         'MAIL_FROM_ADDRESS' => 'test@test.com'
     ]);
 
@@ -486,7 +452,7 @@ it('configura ini_set com valores corretos', function () {
 
     // Verifica que as propriedades foram definidas (ini_set é chamado internamente)
     expect($mail->smtp_server)->toBe('smtp.test.com');
-    expect($mail->smtp_port)->toBe('465');
+    expect($mail->smtp_port)->toBe(465);
     expect($mail->from)->toBe('test@test.com');
 
     cleanupMailEnv();

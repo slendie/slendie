@@ -1,11 +1,11 @@
 <?php
 
 declare(strict_types=1);
-// Load Composer autoloader
-require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-// Define base path
-define('BASE_PATH', dirname(__DIR__));
+require dirname(__DIR__) . '/config/constants.php';
+
+// Load Composer autoloader
+require_once BASE_PATH . '/vendor/autoload.php';
 
 // Register custom autoloader for controllers and models
 Slendie\Framework\Autoloader::register(BASE_PATH);

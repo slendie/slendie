@@ -29,7 +29,7 @@ abstract class Model
         return self::pdo()->lastInsertId();
     }
 
-    public static function find(int|string $id): object|null
+    public static function find(int|string $id): array|null
     {
         $stmt = self::pdo()->prepare('SELECT * FROM ' . static::$table . ' WHERE id = ? LIMIT 1');
         $stmt->execute([$id]);
@@ -50,7 +50,7 @@ abstract class Model
      * @param mixed $value Valor para comparação
      * @return SQL
      */
-    public static function where(string $column, string|null $condition = null, mixed $value = null): SQL
+    public static function where(string $column, mixed $condition = null, mixed $value = null): SQL
     {
         return self::query()->where($column, $condition, $value);
     }

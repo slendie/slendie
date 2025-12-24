@@ -606,17 +606,9 @@ it('render() funciona com view que não existe (tratamento de erro)', function (
 
     $controller = new TestController();
 
-    // Tenta renderizar view que não existe
-    ob_start();
-    try {
+    expect(function () use ($controller) {
         $controller->testRender('non_existent_view', []);
-    } catch (Exception $e) {
-        // Pode lançar exceção se view não existir
-    }
-    $output = ob_get_clean();
-
-    // Deve processar sem erro fatal
-    expect(true)->toBeTrue();
+    })->toThrow(Exception::class, 'View not found: ' . BASE_PATH . '/views/non_existent_view.blade.php');
 
     restoreEnvironment($env['original']);
 });

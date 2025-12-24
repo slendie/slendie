@@ -16,7 +16,7 @@ if (!defined('BASE_PATH')) {
 // Classe de teste que estende Model
 final class TestModel extends Model
 {
-    protected static $table = 'test_models';
+    protected static string $table = 'test_models';
 }
 
 // Função auxiliar para criar tabela de teste

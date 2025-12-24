@@ -20,7 +20,7 @@
         }
     ],
     "scripts": {
-        "test": "pest",
+        "test": "php run-tests.php",
         "install": "php scripts/install.php",
         "migrate": "php scripts/migrate.php",
         "migrate:status": "php scripts/migrate.php status",

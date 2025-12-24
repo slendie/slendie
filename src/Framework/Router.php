@@ -19,7 +19,7 @@ final class Router
         $this->routes = $routes;
     }
 
-    public function dispatch(): null
+    public function dispatch()
     {
         // Cria a instância Request
         $request = new Request();
@@ -43,7 +43,7 @@ final class Router
             // Aplica o Slendie\Controllers\Middlewares\WebMiddleware primeiro para injetar a Request
             $webMiddleware = new WebMiddleware();
             if (!$webMiddleware->handle($request)) {
-                return null;
+                return;
             }
 
             // Aplica os outros middlewares
@@ -51,13 +51,13 @@ final class Router
                 if ($mw === 'auth') {
                     $m = new AuthMiddleware();
                     if (!$m->handle($request)) {
-                        return null;
+                        return;
                     }
                 } elseif (mb_strpos($mw, 'access:') === 0) {
                     $perm = mb_substr($mw, 7);
                     $m = new AccessMiddleware($perm);
                     if (!$m->handle($request)) {
-                        return null;
+                        return;
                     }
                 }
             }

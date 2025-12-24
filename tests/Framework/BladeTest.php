@@ -136,6 +136,14 @@ it('renderiza @if sem @else', function () {
     removeDirectory($tempDir);
 });
 
+it('interpreta if else', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_basic', ['show' => true]);
+    expect($html1)->toContain('on');
+    $html2 = $blade->render('test_if_basic', ['show' => false]);
+    expect($html2)->toContain('off');
+});
+
 it('renderiza @if com comparação', function () {
     $tempDir = createTempViewsDir();
     $templateFile = $tempDir . '/if_compare.blade.php';
@@ -164,6 +172,34 @@ it('renderiza @if com operadores lógicos', function () {
     expect($html2)->not->toContain('Both');
 
     removeDirectory($tempDir);
+});
+
+it('interpreta operador OR com funcao', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_if_or_simple', ['team' => ['show' => 'X']]);
+    expect($html)->toContain('YES');
+});
+
+it('interpreta ifs encadeados com estrita e solta igualdade', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_if_chained', [
+        'test' => 'local',
+        'mode' => 'test'
+    ]);
+    expect($html)->toContain('OK');
+    $html2 = $blade->render('test_if_chained', [
+        'test' => 'local',
+        'mode' => 'prod'
+    ]);
+    expect($html2)->not()->toContain('OK');
+});
+
+it('interpreta if inline', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_inline', ['new' => true]);
+    expect($html1)->toContain('Novo!');
+    $html2 = $blade->render('test_if_inline', ['new' => false]);
+    expect($html2)->not()->toContain('Novo!');
 });
 
 it('renderiza @foreach simples', function () {
@@ -209,6 +245,48 @@ it('renderiza @foreach aninhado', function () {
     expect($html)->toContain('d');
 
     removeDirectory($tempDir);
+});
+
+it('processa foreach com chave e valor', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_foreach_key_value', [
+        'team' => [
+            'dates' => ['2025-03-01', '2025-04-01']
+        ]
+    ]);
+    expect($html)->toContain('0 - 2025-03-01');
+    expect($html)->toContain('1 - 2025-04-01');
+});
+
+it('processa foreach aninhado com chave e valor', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_nested_foreach', [
+        'editions' => [
+            ['name' => 'E1', 'dates' => ['2025-05-01', '2025-06-01']],
+            ['name' => 'E2', 'dates' => ['2025-07-01']]
+        ]
+    ]);
+    expect($html)->toContain('E1 - 0 - 2025-05-01');
+    expect($html)->toContain('E1 - 1 - 2025-06-01');
+    expect($html)->toContain('E2 - 0 - 2025-07-01');
+});
+
+it('processa foreach com array acesso', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_foreach_array', [
+        'team' => [
+            'dates' => ['2025-01-01', '2025-02-01']
+        ]
+    ]);
+    expect($html)->toContain('2025-01-01');
+    expect($html)->toContain('2025-02-01');
+});
+
+it('verifica iteração @foreach de array com @if', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_foreach_with_if_inside');
+    expect($html1)->toContain('Item é 1');
+    expect($html1)->toContain('Item não é 1');
 });
 
 it('renderiza @extends e @section', function () {
@@ -278,25 +356,24 @@ it('renderiza @csrf', function () {
 });
 
 it('renderiza @error e @enderror', function () {
-    $tempDir = createTempViewsDir();
-    $templateFile = $tempDir . '/error.blade.php';
-    file_put_contents($templateFile, "@error('email')\n{{ \$message }}\n@enderror");
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $_SESSION['form_errors'] = ['email' => 'Email is required'];
+
+    $html = $blade->render('test_error_enderror', [
+        'form_errors' => [
+            'email' => 'Email is required'
+        ]
+    ]);
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-
-    $_SESSION['form_errors'] = ['email' => 'Email is required'];
-
-    $blade = new Blade($tempDir);
-    $html = $blade->render('error');
 
     // Remove quebras de linha para comparação
     $html = str_replace(["\n", "\r"], ' ', $html);
     expect($html)->toContain('Email is required');
 
     unset($_SESSION['form_errors']);
-    removeDirectory($tempDir);
 });
 
 it('não renderiza @error quando não há erro', function () {
@@ -344,6 +421,63 @@ it('renderiza função array_key_exists', function () {
     removeDirectory($tempDir);
 });
 
+it('interpreta !array_key_exists', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_array_key_exists_neg', ['team' => ['show' => 'X']]);
+    expect($html1)->toContain('OK');
+    $html2 = $blade->render('test_if_array_key_exists_neg', ['team' => ['dates' => ['2025-01-01']]]);
+    expect($html2)->not()->toContain('OK');
+});
+
+it('interpreta condicao com array_key_exists, count e ||', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_complex_cond', ['team' => ['show' => 'X']]);
+    expect($html1)->toContain('NOVA EDIÇÃO!');
+    $html2 = $blade->render('test_if_complex_cond', ['team' => ['dates' => ['2025-01-01', '2025-02-01']]]);
+    expect($html2)->not()->toContain('NOVA EDIÇÃO!');
+    $html3 = $blade->render('test_if_complex_cond', ['team' => ['dates' => []]]);
+    expect($html3)->toContain('NOVA EDIÇÃO!');
+});
+
+it('interpreta condicao complexa direta', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_only_cond', ['team' => ['show' => 'X']]);
+    expect($html1)->toContain('OK');
+    $html2 = $blade->render('test_if_only_cond', ['team' => ['dates' => ['2025-01-01']]]);
+    expect($html2)->not()->toContain('OK');
+});
+
+it('interpreta if dentro de foreach', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_if_in_foreach', [
+        'items' => ['a', 'b']
+    ]);
+    expect($html)->toContain('A');
+    expect($html)->toContain('X');
+});
+
+it('interpreta if inline com acesso a array e comparacao estrita', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_inline_array_access', ['team' => ['show' => 'Y']]);
+    expect($html1)->toContain('NOVA EDIÇÃO!');
+    $html2 = $blade->render('test_if_inline_array_access', ['team' => ['show' => 'N']]);
+    expect($html2)->not()->toContain('NOVA EDIÇÃO!');
+});
+
+it('interpreta < em if inline dentro de atributo', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html1 = $blade->render('test_if_inline_compare', [
+        'date' => '2025-11-20',
+        'today' => '2025-11-21',
+    ]);
+    expect($html1)->toContain('opacity-50');
+    $html2 = $blade->render('test_if_inline_compare', [
+        'date' => '2025-11-22',
+        'today' => '2025-11-21',
+    ]);
+    expect($html2)->not()->toContain('opacity-50');
+});
+
 it('renderiza função old', function () {
     $tempDir = createTempViewsDir();
     $templateFile = $tempDir . '/old.blade.php';
@@ -383,6 +517,54 @@ it('renderiza função old com valor padrão', function () {
     removeDirectory($tempDir);
 });
 
+it('renderiza json_encode de uma variável', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $data = ['name' => 'John', 'age' => 30];
+    $html = $blade->render('test_function_in_variable', ['data' => $data]);
+    $expected = json_encode($data);
+    expect($html)->toContain($expected);
+});
+
+it('renderiza json_encode com JSON_PRETTY_PRINT', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $data = ['name' => 'John', 'age' => 30];
+    $html = $blade->render('test_function_in_variable_pretty', ['data' => $data]);
+    $expected = json_encode($data, JSON_PRETTY_PRINT);
+    expect($html)->toContain($expected);
+});
+
+it('renderiza strlen de uma string', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_function_strlen', ['text' => 'Hello World']);
+    expect($html)->toContain('11');
+});
+
+it('renderiza htmlspecialchars de uma string', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_function_htmlspecialchars', ['content' => '<script>alert("xss")</script>']);
+    expect($html)->toContain('&lt;script&gt;');
+    expect($html)->not->toContain('<script>');
+});
+
+it('renderiza função com múltiplos argumentos', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_function_multiple_args', ['text' => 'Hello']);
+    expect($html)->toContain('HELLO');
+});
+
+it('renderiza função count dentro de variável', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_function_count', ['items' => [1, 2, 3, 4, 5]]);
+    expect($html)->toContain('5');
+});
+
+it('renderiza função com constante como argumento', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_function_with_constant', ['text' => 'café']);
+    $expected = json_encode('café', JSON_UNESCAPED_UNICODE);
+    expect($html)->toContain($expected);
+});
+
 it('renderiza array inline', function () {
     $tempDir = createTempViewsDir();
     $templateFile = $tempDir . '/array_inline.blade.php';
@@ -396,6 +578,12 @@ it('renderiza array inline', function () {
     expect($html)->toContain('3');
 
     removeDirectory($tempDir);
+});
+
+it('renderiza array com chave em variavel', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_array', ['edition' => ['date' => '2024-12-31']]);
+    expect($html)->toContain('2024-12-31');
 });
 
 it('renderiza acesso a array com chave string', function () {
@@ -435,6 +623,21 @@ it('renderiza acesso a array aninhado', function () {
     expect($html)->toBe('John');
 
     removeDirectory($tempDir);
+});
+
+it('interpreta variavel de indice em array multidimensional', function () {
+    $blade = new Blade(dirname(__DIR__) . '/Views/views');
+    $html = $blade->render('test_array_index_var', [
+        'team' => [
+            'dates' => [0 => '2025-01-01', 1 => '2025-02-01'],
+            'long_date' => [
+                0 => '01 Janeiro 2025',
+                1 => '01 Fevereiro 2025'
+            ]
+        ]
+    ]);
+    expect($html)->toContain('01 Janeiro 2025');
+    expect($html)->toContain('01 Fevereiro 2025');
 });
 
 it('renderiza @if inline', function () {

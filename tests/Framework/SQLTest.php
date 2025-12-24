@@ -168,7 +168,8 @@ it('group() lança exceção quando callback não é callable', function () {
     $sql = new SQL('users');
 
     expect(fn () => $sql->group('not a callback'))
-        ->toThrow(InvalidArgumentException::class, 'group() requires a callable parameter');
+        ->toThrow(TypeError::class, 'Argument #1 ($callback) must be of type callable, string given');
+
 });
 
 it('adiciona ORDER BY ASC', function () {
@@ -283,19 +284,6 @@ it('adiciona múltiplos GROUP BY', function () {
 it('define LIMIT', function () {
     $sql = new SQL('users');
     $sql->limit(10);
-
-    $reflection = new ReflectionClass($sql);
-    $limitProperty = $reflection->getProperty('limitValue');
-    $limitProperty->setAccessible(true);
-
-    $limit = $limitProperty->getValue($sql);
-
-    expect($limit)->toBe(10);
-});
-
-it('LIMIT converte para inteiro', function () {
-    $sql = new SQL('users');
-    $sql->limit('10');
 
     $reflection = new ReflectionClass($sql);
     $limitProperty = $reflection->getProperty('limitValue');

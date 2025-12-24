@@ -101,7 +101,7 @@ final class SQL
      * @param mixed $value Valor para comparação
      * @return self
      */
-    public function where(string $column, string|null $condition = null, mixed $value = null): self
+    public function where(string $column, mixed $condition = null, mixed $value = null): self
     {
         // Suporta where('coluna', 'valor') ou where('coluna', '=', 'valor')
         if ($value === null) {

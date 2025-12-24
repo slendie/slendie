@@ -8,5 +8,5 @@ use Slendie\Models\Model;
 
 final class Role extends Model
 {
-    protected static $table = 'roles';
+    protected static string $table = 'roles';
 }
