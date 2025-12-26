@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use Slendie\Framework\Env;
+use Slendie\Framework\Router;
 final class App
 {
     public function __construct()
@@ -21,9 +23,9 @@ final class App
              // Load environment variables
         $envPath = BASE_PATH . '/.env';
         if (!file_exists($envPath)) {
-            $envPath = BASE_PATH . '/.env.example';
+            throw new \Exception('Arquivo .env não encontrado');
         }
-        \Slendie\Framework\Env::load($envPath);
+        Env::load($envPath);
 
         // Load app configuration
         $app = require BASE_PATH . '/config/app.php';
@@ -34,7 +36,7 @@ final class App
     public function run()
     {
         $routes = require BASE_PATH . '/config/routes.php';
-        $router = new \Slendie\Framework\Router($routes);
+        $router = new Router($routes);
         $router->dispatch();
     }
 }

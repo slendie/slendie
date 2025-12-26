@@ -39,8 +39,15 @@
                         <div>
                             <h5 class="font-semibold text-slate-900 mb-3">Conceitos</h5>
                             <ul class="space-y-2 text-sm text-slate-600">
+                                <li><a href="#rotas" class="hover:text-indigo-600 block py-1">Rotas & Controllers</a></li>
                                 <li><a href="#views" class="hover:text-indigo-600 block py-1">Views & Blade</a></li>
                                 <li><a href="#models" class="hover:text-indigo-600 block py-1">Models & Banco</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-slate-900 mb-3">Informações</h5>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li><a href="#changelog" class="hover:text-indigo-600 block py-1">Changelog</a></li>
                             </ul>
                         </div>
                     </div>
@@ -220,11 +227,11 @@ public function index() {
                             <h3 class="text-lg font-bold text-slate-800 mb-3">Sintaxe de Exibição</h3>
                             <div class="grid md:grid-cols-2 gap-6 mb-8">
                                 <div class="bg-white border border-slate-200 rounded-lg p-4">
-                                    <div class="font-mono text-indigo-600 font-bold mb-2">@{{ $variavel }}</div>
+                                    <div class="font-mono text-indigo-600 font-bold mb-2"><script>document.write('{'+ '{ $variavel }' + '}');</script></div>
                                     <p class="text-sm text-slate-600">Imprime o valor <strong>sem escapar</strong> (raw output). Use para HTML confiável.</p>
                                 </div>
                                 <div class="bg-white border border-slate-200 rounded-lg p-4">
-                                    <div class="font-mono text-indigo-600 font-bold mb-2">{!! $variavel !!}</div>
+                                    <div class="font-mono text-indigo-600 font-bold mb-2"><script>document.write('{'+ '!! $variavel !!' + '}');</script></div>
                                     <p class="text-sm text-slate-600">Imprime o valor <strong>escapado</strong> (safe output). Converte caracteres especiais em entidades HTML.</p>
                                 </div>
                             </div>
@@ -232,9 +239,9 @@ public function index() {
                             <h3 class="text-lg font-bold text-slate-800 mb-3">Estruturas de Controle</h3>
                             <p class="text-slate-600 mb-4">Suporte completo para condicionais e loops:</p>
                             <div class="bg-slate-900 rounded-xl p-6 mb-8 overflow-x-auto shadow-lg">
-                                <pre class="text-indigo-100 font-mono text-sm leading-relaxed"><code class="language-html">@if(count($users) > 0)
-    @foreach($users as $user)
-        &lt;div&gt;@{{ $user['name'] }}&lt;/div&gt;
+                                <pre class="text-indigo-100 font-mono text-sm leading-relaxed"><code class="language-html"><script>document.write('@' + 'if(count($users) > 0)');</script>
+<script>document.write('    @' + 'foreach($users as $user)');</script>
+        &lt;div&gt;<script>document.write('{'+ '{ $user[\'name\'] }' + '}');</script>&lt;/div&gt;
     @endforeach
 @else
     &lt;p&gt;Nenhum usuário encontrado.&lt;/p&gt;
@@ -250,10 +257,10 @@ public function index() {
 <pre class="text-indigo-100 font-mono text-xs leading-relaxed">
 &lt;html&gt;
     &lt;head&gt;
-        @asset('css/app.css')
+<script>document.write('        @'+"asset('css/app.css')"+')');</script>
     &lt;/head&gt;
     &lt;body&gt;
-        @yield('content')
+<script>document.write('        @'+"yield('content')")</script>
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -263,11 +270,11 @@ public function index() {
                                     <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">views/home.blade.php</div>
                                     <div class="bg-slate-900 rounded-xl p-4 overflow-x-auto shadow-md h-full">
 <pre class="text-indigo-100 font-mono text-xs leading-relaxed">
-@extends('layouts.app')
+<script>document.write('@'+"extends('layouts.app')"+')');</script>
 
-@section('content')
+<script>document.write('@'+"section('content')"+')');</script>
     &lt;h1&gt;Página Inicial&lt;/h1&gt;
-@endsection
+<script>document.write('@'+"endsection"+')');</script>
 </pre>
                                     </div>
                                 </div>
@@ -276,19 +283,19 @@ public function index() {
                             <h3 class="text-lg font-bold text-slate-800 mb-3">Diretivas Úteis</h3>
                             <ul class="space-y-4 mb-8">
                                 <li class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                    <code class="text-indigo-600 font-bold">@include('partials.header')</code>
+                                    <code class="text-indigo-600 font-bold"><script>document.write('@'+"include('partials.header')"+')');</script></code>
                                     <p class="text-sm text-slate-600 mt-1">Inclui outra view. Suporta notação com ponto.</p>
                                 </li>
                                 <li class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                    <code class="text-indigo-600 font-bold">@asset('js/app.js')</code>
+                                    <code class="text-indigo-600 font-bold"><script>document.write('@'+"asset('js/app.js')"+')');</script></code>
                                     <p class="text-sm text-slate-600 mt-1">Integração com Vite. Gera tags de script e link CSS.</p>
                                 </li>
                                 <li class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                    <code class="text-indigo-600 font-bold">@csrf</code>
+                                    <code class="text-indigo-600 font-bold"><script>document.write('@'+"csrf"+')');</script></code>
                                     <p class="text-sm text-slate-600 mt-1">Gera um campo input hidden com o token CSRF para formulários.</p>
                                 </li>
                                 <li class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                    <code class="text-indigo-600 font-bold">@error('email') ... @enderror</code>
+                                    <code class="text-indigo-600 font-bold"><script>document.write('@'+"error('email')"+')');</script> ... <script>document.write('@'+"enderror"+')');</script></code>
                                     <p class="text-sm text-slate-600 mt-1">Verifica erros de validação. Disponibiliza a variável <code>$message</code>.</p>
                                 </li>
                             </ul>
@@ -389,6 +396,109 @@ $users = User::where('role', 'admin')
                                     <code class="text-indigo-600 font-mono text-sm font-bold">first()</code>
                                     <p class="text-sm text-slate-600 mt-1">Executa a query e retorna apenas o primeiro resultado.</p>
                                 </div>
+                            </div>
+                        </section>
+
+                        <hr class="my-10 border-slate-100">
+
+                        <!-- Changelog -->
+                        <section id="changelog" class="scroll-mt-28">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <span class="text-indigo-600">#</span> Changelog
+                            </h2>
+                            <p class="text-slate-600 mb-6">
+                                Registro de todas as mudanças, melhorias e correções em cada versão do Slendie.
+                            </p>
+
+                            <div class="space-y-8">
+                                <!-- Versão 3.0.0 -->
+                                <div class="border-l-4 border-indigo-600 pl-6">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <h3 class="text-xl font-bold text-slate-900">v3.0.0</h3>
+                                        <span class="px-2 py-1 text-xs font-semibold text-indigo-700 bg-indigo-100 rounded-full">Atual</span>
+                                        <span class="text-sm text-slate-500">2024</span>
+                                    </div>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Integração completa com Vite para assets frontend</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Motor Blade melhorado com novas diretivas</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Sistema de rotas baseado em arrays de configuração</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-emerald-600 mt-1">~</span>
+                                            <span>Melhorias de performance no sistema de rotas</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-emerald-600 mt-1">~</span>
+                                            <span>Otimizações no Query Builder</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Versão 2.0.0 -->
+                                <div class="border-l-4 border-slate-300 pl-6">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <h3 class="text-xl font-bold text-slate-900">v2.0.0</h3>
+                                        <span class="text-sm text-slate-500">2023</span>
+                                    </div>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Sistema de middleware implementado</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Proteção CSRF automática</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-emerald-600 mt-1">~</span>
+                                            <span>Refatoração da arquitetura MVC</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Versão 1.0.0 -->
+                                <div class="border-l-4 border-slate-300 pl-6">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <h3 class="text-xl font-bold text-slate-900">v1.0.0</h3>
+                                        <span class="text-sm text-slate-500">2022</span>
+                                    </div>
+                                    <ul class="space-y-2 text-slate-600">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Lançamento inicial do framework</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Sistema básico de rotas e controllers</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>Motor Blade básico</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-indigo-600 mt-1">+</span>
+                                            <span>ORM simples com Query Builder</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 p-4 bg-indigo-50 border border-indigo-100 rounded-lg">
+                                <p class="text-sm text-indigo-900">
+                                    <strong>Legenda:</strong>
+                                    <span class="ml-4"><span class="text-indigo-600">+</span> Nova funcionalidade</span>
+                                    <span class="ml-4"><span class="text-emerald-600">~</span> Melhoria</span>
+                                    <span class="ml-4"><span class="text-red-600">-</span> Remoção</span>
+                                    <span class="ml-4"><span class="text-amber-600">!</span> Correção</span>
+                                </p>
                             </div>
                         </section>
                     </div>

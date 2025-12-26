@@ -1,18 +1,28 @@
 <?php
 
 declare(strict_types=1);
+
 return [
     [
         'method' => 'GET',
         'path' => '/',
         'handler' => 'App\Controllers\HomeController@index',
         'middlewares' => [],
+        'name' => 'home'
     ],
     [
         'method' => 'GET',
         'path' => '/docs',
         'handler' => 'App\Controllers\HomeController@docs',
         'middlewares' => [],
+        'name' => 'docs'
+    ],
+    [
+        'method' => 'GET',
+        'path' => '/legal',
+        'handler' => 'App\Controllers\HomeController@legal',
+        'middlewares' => [],
+        'name' => 'legal'
     ],
     [
         'method' => 'GET',

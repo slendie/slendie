@@ -9,8 +9,8 @@
                 <span class="font-bold text-xl tracking-tight text-slate-900">Slendie</span>
             </div>
             <div class="hidden md:flex items-center gap-8">
-                <a href="#features" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Recursos</a>
-                <a href="#code" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Código</a>
+                <a href="{{ route('home') }}#features" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Recursos</a>
+                <a href="{{ route('home') }}#code" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Código</a>
                 <a href="https://github.com/slendie/slendie" target="_blank" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">GitHub</a>
             </div>
             <div>
@@ -50,9 +50,10 @@
                 <div class="w-full sm:w-auto relative group">
                     <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-xl opacity-30 group-hover:opacity-100 transition duration-200 blur"></div>
                     <div class="relative flex items-center bg-white rounded-xl leading-none">
-                        <code class="flex-1 px-4 py-3.5 font-mono text-sm text-slate-700 select-all">composer create-project slendie/slendie</code>
-                        <button class="px-3 py-3.5 text-slate-400 hover:text-indigo-600 transition-colors border-l border-slate-100" title="Copiar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <code id="copy-code-text" class="flex-1 px-4 py-3.5 font-mono text-sm text-slate-700 select-all">composer create-project slendie/slendie</code>
+                        <button id="copy-button" class="px-3 py-3.5 text-slate-400 hover:text-indigo-600 transition-colors border-l border-slate-100" title="Copiar" data-copy-text="composer create-project slendie/slendie">
+                            <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         </button>
                     </div>
                 </div>
@@ -133,7 +134,7 @@
                         </li>
                     </ul>
 
-                    <a href="#" class="inline-flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
+                    <a href="{{ route('docs') }}" class="inline-flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
                         Explorar a arquitetura
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
@@ -146,18 +147,24 @@
                             <div class="w-3 h-3 rounded-full bg-red-500"></div>
                             <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                             <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <div class="ml-4 text-xs text-slate-500 font-mono">routes/web.php</div>
+                            <div class="ml-4 text-xs text-slate-500 font-mono">config/routes.php</div>
                         </div>
                         <div class="p-6 overflow-x-auto">
-                            <pre class="font-mono text-sm leading-relaxed"><code class="language-php"><span class="text-violet-400">use</span> <span class="text-blue-400">Slendie\Framework\Router</span>;
-
-<span class="text-slate-500">// Definição de rotas simples e expressiva</span>
-<span class="text-yellow-300">Router</span>::<span class="text-blue-300">get</span>(<span class="text-green-300">'/'</span>, <span class="text-green-300">'HomeController@index'</span>);
-
-<span class="text-yellow-300">Router</span>::<span class="text-blue-300">group</span>([<span class="text-green-300">'prefix'</span> => <span class="text-green-300">'/api'</span>], <span class="text-violet-400">function</span>() {
-    <span class="text-yellow-300">Router</span>::<span class="text-blue-300">get</span>(<span class="text-green-300">'/users'</span>, [<span class="text-yellow-300">UserController</span>::<span class="text-violet-400">class</span>, <span class="text-green-300">'index'</span>]);
-    <span class="text-yellow-300">Router</span>::<span class="text-blue-300">post</span>(<span class="text-green-300">'/users'</span>, [<span class="text-yellow-300">UserController</span>::<span class="text-violet-400">class</span>, <span class="text-green-300">'store'</span>]);
-});</code></pre>
+                            <pre class="font-mono text-sm leading-relaxed"><code class="language-php"><span class="text-violet-400">return</span> [
+    [
+        <span class="text-green-300">'method'</span> => <span class="text-green-300">'GET'</span>,
+        <span class="text-green-300">'path'</span> => <span class="text-green-300">'/'</span>,
+        <span class="text-green-300">'handler'</span> => <span class="text-green-300">'App\Controllers\HomeController@index'</span>,
+        <span class="text-green-300">'middlewares'</span> => [],
+    ],
+    [
+        <span class="text-green-300">'method'</span> => <span class="text-green-300">'GET'</span>,
+        <span class="text-green-300">'path'</span> => <span class="text-green-300">'/docs'</span>,
+        <span class="text-green-300">'handler'</span> => <span class="text-green-300">'App\Controllers\HomeController@docs'</span>,
+        <span class="text-green-300">'middlewares'</span> => [],
+    ],
+];</code>
+                            </pre>
                         </div>
                     </div>
                 </div>
@@ -188,6 +195,64 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButton = document.getElementById('copy-button');
+            const copyIcon = document.getElementById('copy-icon');
+            const checkIcon = document.getElementById('check-icon');
+            const copyText = copyButton.getAttribute('data-copy-text');
+
+            copyButton.addEventListener('click', async function() {
+                try {
+                    await navigator.clipboard.writeText(copyText);
+                    
+                    // Feedback visual
+                    copyIcon.classList.add('hidden');
+                    checkIcon.classList.remove('hidden');
+                    copyButton.classList.remove('text-slate-400', 'hover:text-indigo-600');
+                    copyButton.classList.add('text-green-600');
+                    copyButton.setAttribute('title', 'Copiado!');
+                    
+                    // Reverter após 2 segundos
+                    setTimeout(function() {
+                        copyIcon.classList.remove('hidden');
+                        checkIcon.classList.add('hidden');
+                        copyButton.classList.remove('text-green-600');
+                        copyButton.classList.add('text-slate-400', 'hover:text-indigo-600');
+                        copyButton.setAttribute('title', 'Copiar');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Erro ao copiar texto:', err);
+                    // Fallback para navegadores mais antigos
+                    const textArea = document.createElement('textarea');
+                    textArea.value = copyText;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyIcon.classList.add('hidden');
+                        checkIcon.classList.remove('hidden');
+                        copyButton.classList.remove('text-slate-400', 'hover:text-indigo-600');
+                        copyButton.classList.add('text-green-600');
+                        copyButton.setAttribute('title', 'Copiado!');
+                        setTimeout(function() {
+                            copyIcon.classList.remove('hidden');
+                            checkIcon.classList.add('hidden');
+                            copyButton.classList.remove('text-green-600');
+                            copyButton.classList.add('text-slate-400', 'hover:text-indigo-600');
+                            copyButton.setAttribute('title', 'Copiar');
+                        }, 2000);
+                    } catch (fallbackErr) {
+                        console.error('Erro no fallback:', fallbackErr);
+                    }
+                    document.body.removeChild(textArea);
+                }
+            });
+        });
+    </script>
 @endsection
 
 @section('footer')
@@ -196,33 +261,29 @@
         <div>
             <h4 class="font-bold text-slate-900 mb-4">Produto</h4>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li><a href="#" class="hover:text-indigo-600">Recursos</a></li>
-                <li><a href="#" class="hover:text-indigo-600">Integrações</a></li>
-                <li><a href="#" class="hover:text-indigo-600">Changelog</a></li>
+                <li><a href="{{ route('home') }}#features" class="hover:text-indigo-600">Recursos</a></li>
+                <li><a href="{{ route('docs') }}#changelog" class="hover:text-indigo-600">Changelog</a></li>
             </ul>
         </div>
         <div>
             <h4 class="font-bold text-slate-900 mb-4">Recursos</h4>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li><a href="/docs" class="hover:text-indigo-600">Documentação</a></li>
-                <li><a href="/docs#api" class="hover:text-indigo-600">API Reference</a></li>
-                <li><a href="/docs#exemplos" class="hover:text-indigo-600">Exemplos</a></li>
+                <li><a href="{{ route('docs') }}" class="hover:text-indigo-600">Documentação</a></li>
+                <li><a href="{{ route('docs') }}#rotas" class="hover:text-indigo-600">Exemplos</a></li>
             </ul>
         </div>
         <div>
             <h4 class="font-bold text-slate-900 mb-4">Comunidade</h4>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li><a href="#" class="hover:text-indigo-600">GitHub</a></li>
-                <li><a href="#" class="hover:text-indigo-600">Discord</a></li>
-                <li><a href="#" class="hover:text-indigo-600">Twitter</a></li>
+                <li><a href="https://github.com/slendie/slendie" class="hover:text-indigo-600">GitHub</a></li>
             </ul>
         </div>
         <div>
             <h4 class="font-bold text-slate-900 mb-4">Legal</h4>
             <ul class="space-y-2 text-sm text-slate-600">
-                <li><a href="#" class="hover:text-indigo-600">Privacidade</a></li>
-                <li><a href="#" class="hover:text-indigo-600">Termos</a></li>
-                <li><a href="#" class="hover:text-indigo-600">Licença</a></li>
+                <li><a href="{{ route('legal') }}#privacy" class="hover:text-indigo-600">Privacidade</a></li>
+                <li><a href="{{ route('legal') }}#terms" class="hover:text-indigo-600">Termos</a></li>
+                <li><a href="{{ route('legal') }}#license" class="hover:text-indigo-600">Licença</a></li>
             </ul>
         </div>
     </div>
