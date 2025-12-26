@@ -5,38 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a733ba3-f0c1-4515-9295-debcee10d8e2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/slendie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/slendie.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpstan.neon" beforeDir="false" afterPath="$PROJECT_DIR$/phpstan.neon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Framework/Blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Framework/Blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Framework/Env.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Framework/Env.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Framework/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Framework/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/App/Controllers/HomeControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/App/Controllers/HomeControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Framework/BladeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Framework/BladeTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Framework/MailTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Framework/MailTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Framework/SQLTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Framework/SQLTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Models/ModelTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Models/ModelTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Pest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Pest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeArrayIndexVarTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeArrayTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeForeachArrayTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeForeachKeyValueTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeFunctionInVariableTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfArrayKeyExistsNegTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfBasicTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfChainedTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfComplexConditionTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfInForeachTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfInlineArrayAccessTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfInlineCompareTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfInlineTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfOnlyCondTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeIfOrSimpleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Views/BladeNestedForeachTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,25 +93,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;release/v3.0.0&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "develop",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Pest.Main">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
@@ -170,6 +139,7 @@
       <updated>1766337081502</updated>
       <workItem from="1766337082787" duration="1220000" />
       <workItem from="1766421376008" duration="1853000" />
+      <workItem from="1766773241237" duration="1009000" />
     </task>
     <servers />
   </component>

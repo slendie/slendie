@@ -29,4 +29,11 @@ final class HomeController extends Controller
         $html = $blade->render('docs');
         echo $html;
     }
+
+    public function legal()
+    {
+        $blade = new Blade();
+        $html = $blade->render('legal');
+        echo $html;
+    }
 }
