@@ -15,15 +15,6 @@
             "email": "lcloss@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./packages/slendie/framework",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "scripts": {
         "test": "php run-tests.php",
         "install": "php scripts/install.php",
@@ -48,7 +39,7 @@
         "php": ">=8.4",
         "vlucas/phpdotenv": "^5.6",
         "phpmailer/phpmailer": "^7.0",
-        "slendie/framework": "@dev"
+        "slendie/framework": "^3.0"
     },
     "require-dev": {
         "laravel/pint": "^1.26",
