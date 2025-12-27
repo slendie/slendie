@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f18e9167c7326643b82be46a92ed42ce",
+    "content-hash": "318b8f9bc63b8d85be4c3da42f2c1932",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -227,28 +227,40 @@
         },
         {
             "name": "slendie/framework",
-            "version": "dev-develop",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slendie/framework.git",
+                "reference": "8ea3d6f1f65d3f3d39773f5c15ba93b010aa147e"
+            },
             "dist": {
-                "type": "path",
-                "url": "./packages/slendie/framework",
-                "reference": "5abf9b3ec1cc8256719475bc8d02727dbed66a47"
+                "type": "zip",
+                "url": "https://api.github.com/repos/slendie/framework/zipball/8ea3d6f1f65d3f3d39773f5c15ba93b010aa147e",
+                "reference": "8ea3d6f1f65d3f3d39773f5c15ba93b010aa147e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4",
+                "phpmailer/phpmailer": "^7.0",
+                "vlucas/phpdotenv": "^5.6"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.26",
+                "pestphp/pest": "4.x-dev",
+                "phpstan/phpstan": "^2.1"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Slendie\\Framework\\": "src/Framework/",
-                    "Slendie\\Controllers\\": "src/Controllers/",
-                    "Slendie\\Models\\": "src/Models/"
-                },
                 "files": [
-                    "/src/helpers/functions.php"
-                ]
+                    "src/helpers/functions.php"
+                ],
+                "psr-4": {
+                    "Slendie\\Models\\": "src/Models/",
+                    "Slendie\\Framework\\": "src/Framework/",
+                    "Slendie\\Controllers\\": "src/Controllers/"
+                }
             },
-            "scripts": {
-                "test": [
-                    "php run-tests.php"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -267,10 +279,11 @@
                 "php",
                 "slendie"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/slendie/framework/issues",
+                "source": "https://github.com/slendie/framework/tree/v3.0.2"
+            },
+            "time": "2025-12-27T12:27:12+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4249,9 +4262,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "slendie/framework": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
