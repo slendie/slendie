@@ -11,7 +11,7 @@ it('renderiza a home com layout', function () {
     ob_start();
     $c->index();
     $out = ob_get_clean();
-    expect($out)->toContain('Home');
-    expect($out)->toContain('Item é 1');
-    expect($out)->toContain('Item não é 1');
+    expect($out)->toContain('Slendie');
+    expect($out)->toContain('e Performance');
+    expect($out)->toContain('Construído para desenvolvedores');
 });

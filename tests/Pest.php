@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-namespace tests;
 define('PHPUNIT_TEST', true);
 
 // ini_set('display_errors', '1');
@@ -10,10 +9,11 @@ define('PHPUNIT_TEST', true);
 
 // Define BASE_PATH se não estiver definido
 if (!defined('BASE_PATH')) {
-    define('BASE_PATH', dirname(__DIR__));
+    define('BASE_PATH', dirname(__DIR__, 1));
 }
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$autoload_path = BASE_PATH . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+require_once $autoload_path;
 
 use Slendie\Controllers\Controller;
 use Slendie\Controllers\Middlewares\WebMiddleware;
@@ -31,6 +31,31 @@ Env::set('DB_DATABASE', ':memory:');
 Env::set('TIMEZONE', 'UTC');
 
 date_default_timezone_set('UTC');
+
+/*
+|--------------------------------------------------------------------------
+| Test Case
+|--------------------------------------------------------------------------
+|
+| The closure you provide to your test functions is always bound to a specific PHPUnit test
+| case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
+| need to change it using the "pest()" function to bind a different classes or traits.
+|
+*/
+
+// pest()->extend(Tests\TestCase::class)->in('Feature');
+
+
+/*
+|--------------------------------------------------------------------------
+| Functions
+|--------------------------------------------------------------------------
+|
+| While Pest is very powerful out-of-the-box, you may have some testing code specific to your
+| project that you don't want to repeat in every file. Here you can also expose helpers as
+| global functions to help you to reduce the number of lines of code in your test files.
+|
+*/
 
 // Função auxiliar para limpar WebMiddleware
 function cleanupWebMiddleware()
@@ -407,90 +432,8 @@ function cleanupMailEnv()
 }
 
 
-// Classe de controller de teste que expõe métodos protegidos
-final class TestController extends Controller
-{
-    public static $calledMethod = null;
-    public static $calledArgs = [];
-    public static $output = '';
-
-    public static function reset()
-    {
-        self::$calledMethod = null;
-        self::$calledArgs = [];
-        self::$output = '';
-    }
-
-    public function getRequest()
-    {
-        return $this->request();
-    }
-
-    public function testRedirect($url)
-    {
-        return $this->redirect($url);
-    }
-
-    public function testRender($view, $data = [])
-    {
-        return $this->render($view, $data);
-    }
-
-    public function getFormErrors()
-    {
-        return $this->formErrors;
-    }
-
-    public function getFormSuccess()
-    {
-        return $this->formSuccess;
-    }
-
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
-    public function getOldInput()
-    {
-        return $this->oldInput;
-    }
-
-    public function index()
-    {
-        self::$calledMethod = 'index';
-        self::$calledArgs = func_get_args();
-        return 'index output';
-    }
-
-    public function show($id)
-    {
-        self::$calledMethod = 'show';
-        self::$calledArgs = func_get_args();
-        return 'show output: ' . $id;
-    }
-
-    public function edit($id, $action)
-    {
-        self::$calledMethod = 'edit';
-        self::$calledArgs = func_get_args();
-        return 'edit output: ' . $id . ' ' . $action;
-    }
-
-    public function create()
-    {
-        self::$calledMethod = 'create';
-        self::$calledArgs = func_get_args();
-        return 'create output';
-    }
-
-    public function store()
-    {
-        self::$calledMethod = 'store';
-        self::$calledArgs = func_get_args();
-        return 'store output';
-    }
-}
+// Carrega a classe TestController do namespace tests
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'TestController.php';
 
 // Registra error handler para limpar WebMiddleware quando há erros fatais
 // Isso previne que objetos Request sejam serializados durante o tratamento de erros
