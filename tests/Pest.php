@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+
+namespace tests;
 define('PHPUNIT_TEST', true);
 
 // ini_set('display_errors', '1');
@@ -41,7 +43,7 @@ function cleanupWebMiddleware()
     } catch (Throwable $e) {
         // Ignora erros de limpeza
     }
-    
+
     // Garante que $_SERVER não contenha objetos Request acidentalmente
     // Isso pode acontecer se algum teste modificar $_SERVER incorretamente
     // Também garante que $_SERVER seja sempre um array
@@ -58,12 +60,12 @@ function cleanupWebMiddleware()
 
 // Limpa WebMiddleware após cada teste para evitar problemas durante o shutdown
 // Isso previne que objetos Request sejam serializados quando o Pest tenta exibir erros
-afterEach(function() {
+afterEach(function () {
     cleanupWebMiddleware();
 });
 
 // Também limpa no início de cada teste para garantir estado limpo
-beforeEach(function() {
+beforeEach(function () {
     cleanupWebMiddleware();
 });
 
@@ -383,11 +385,11 @@ function setupMailEnv($config = [])
 
     foreach ($merged as $key => $value) {
         if ($key === 'MAIL_PORT') {
-            Env::set($key, (int) $value);
+            Env::set($key, (int)$value);
         } else {
-            Env::set($key, (string) $value);
+            Env::set($key, (string)$value);
         }
-        
+
     }
 }
 
@@ -492,7 +494,7 @@ final class TestController extends Controller
 
 // Registra error handler para limpar WebMiddleware quando há erros fatais
 // Isso previne que objetos Request sejam serializados durante o tratamento de erros
-set_error_handler(function($errno, $errstr, $errfile, $errline) {
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
     // Limpa WebMiddleware apenas para erros fatais
     if (in_array($errno, [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_PARSE, E_RECOVERABLE_ERROR])) {
         cleanupWebMiddleware();
@@ -505,12 +507,12 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 // e que objetos Request armazenados no WebMiddleware sejam limpos
 // IMPORTANTE: Esta função deve ser registrada ANTES de qualquer outra shutdown function
 // para garantir que seja executada primeiro
-register_shutdown_function(function() {
+register_shutdown_function(function () {
     // Limpa o WebMiddleware IMEDIATAMENTE para evitar que objetos Request sejam serializados
     // durante o shutdown do Pest, especialmente quando há erros e o Pest tenta exibir informações
     // Isso previne o erro "Cannot use object of type Request as array" no OutputFormatterStyle
     cleanupWebMiddleware();
-    
+
     // Limpa qualquer output buffering que possa ter ficado aberto
     while (ob_get_level() > 0) {
         @ob_end_flush();

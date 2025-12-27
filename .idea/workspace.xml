@@ -4,11 +4,84 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a733ba3-f0c1-4515-9295-debcee10d8e2" name="Changes" comment="" />
+    <list default="true" id="5a733ba3-f0c1-4515-9295-debcee10d8e2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/slendie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/slendie.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/functions.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Controller.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Middlewares/AccessMiddleware.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Middlewares/AuthMiddleware.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Middlewares/WebMiddleware.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Autoloader.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/CSRF.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Database.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Env.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Mail.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Migrator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Request.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Router.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/SQL.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Framework/Vite.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Model.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Controllers/ControllerTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Controllers/Middlewares/AccessMiddlewareTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Controllers/Middlewares/AuthMiddlewareTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Controllers/Middlewares/WebMiddlewareTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/AutoloaderTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/BladeTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/CSRFTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/DatabaseTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/EnvTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/MailTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/MigratorTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/RequestTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/RouterTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/SQLTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/ViteTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Framework/test.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Models/ModelTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Pest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Pest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_array.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_array_index_var.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_error_enderror.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_foreach_array.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_foreach_key_value.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_foreach_with_if_inside.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_count.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_htmlspecialchars.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_in_variable.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_in_variable_pretty.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_multiple_args.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_strlen.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_function_with_constant.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_array_key_exists_neg.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_basic.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_chained.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_complex_cond.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_in_foreach.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_inline.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_inline_array_access.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_inline_compare.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_only_cond.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_if_or_simple.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Views/views/test_nested_foreach.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/front.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/front.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/packages/slendie/framework/composer.json" />
+    </option>
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
@@ -81,6 +154,71 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
       <path value="$PROJECT_DIR$/vendor/laravel/pint" />
+      <path value="$PROJECT_DIR$/vendor/slendie/framework" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/brianium/paratest" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/ta-tikoma/phpunit-architecture-test" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/pestphp/pest-plugin" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/pestphp/pest-plugin-arch" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/pestphp/pest" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/pestphp/pest-plugin-mutate" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/pestphp/pest-plugin-profanity" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/composer" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/fidry/cpu-core-counter" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/laravel/pint" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/packages/slendie/framework/vendor/symfony/polyfill-mbstring" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -91,25 +229,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "develop",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lucia/Source/PHP/slendie/tests&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lucia\Source\PHP\slendie\tests" />
+      <recent name="C:\Users\lucia\Source\PHP\slendie\packages\slendie\framework" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lucia\Source\PHP\slendie\packages\slendie\framework\tests\Feature" />
+    </key>
+  </component>
   <component name="RunManager" selected="Pest.Main">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
@@ -117,6 +265,10 @@
     </configuration>
     <configuration name="Main" type="PestRunConfigurationType">
       <PestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="ConfigurationFile" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="packages\slendie\framework" type="PestRunConfigurationType">
+      <PestRunner configuration_file="$PROJECT_DIR$/packages/slendie/framework/phpunit.xml" scope="ConfigurationFile" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
   </component>
@@ -137,7 +289,8 @@
       <updated>1766337081502</updated>
       <workItem from="1766337082787" duration="1220000" />
       <workItem from="1766421376008" duration="1853000" />
-      <workItem from="1766773241237" duration="2364000" />
+      <workItem from="1766773241237" duration="7691000" />
+      <workItem from="1766834724972" duration="1241000" />
     </task>
     <servers />
   </component>

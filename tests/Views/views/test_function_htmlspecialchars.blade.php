@@ -1,2 +1,0 @@
-{{ htmlspecialchars($content) }}
-

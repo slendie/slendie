@@ -1,2 +1,0 @@
-{{ strtoupper($text) }}
-
