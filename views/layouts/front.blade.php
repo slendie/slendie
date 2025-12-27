@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ $app_name ?? 'Slendie' }}</title>
+  <title>{{ 'Slendie' }}</title>
   <meta name="description" content="Starter kit PHP moderno, leve e eficiente para desenvolvedores.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
