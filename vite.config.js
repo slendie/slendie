@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import tailwindcss from '@tailwindcss/vite'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,9 +24,19 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    strictPort: true
+    host: 'localhost',
+    cors: {
+      origin: [
+        'http://localhost:8000',
+        'http://localhost:5173/@vite/client',
+        'http://localhost:5173/src/js/app.js',
+        /^http:\/\/.*\.test$/,      // Permite qualquer domínio .test
+        /^http:\/\/localhost:\d+/, // Permite localhost em qualquer porta
+      ]
+    }
   },
   plugins: [
+    tailwindcss(),
   ]
 });
 

@@ -36,7 +36,7 @@ final class App
     public function run()
     {
         $routes = require BASE_PATH . '/config/routes.php';
-        $router = new Router($routes);
+        $router = Router::getInstance($routes);
         $router->dispatch();
     }
 }
