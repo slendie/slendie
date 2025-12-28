@@ -6,6 +6,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Slendie\Framework\CSRF;
 use Slendie\Framework\Router;
 
+// Reseta a instância do singleton antes de cada teste
+beforeEach(function () {
+    Router::resetInstance();
+});
+
 it('rota POST /contato chama App\Controllers\FormController@store', function () {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -41,7 +46,7 @@ it('rota POST /contato chama App\Controllers\FormController@store', function () 
     ];
 
     // Cria o router
-    $router = new Router($routes);
+    $router = Router::getInstance($routes);
 
     // Captura a saída
     ob_start();
@@ -62,7 +67,7 @@ it('retorna 404 para rota POST inexistente', function () {
     $routes = [];
 
     // Cria o router
-    $router = new Router($routes);
+    $router = Router::getInstance($routes);
 
     // Captura a saída
     ob_start();
@@ -102,7 +107,7 @@ it('não processa GET para /contato', function () {
     ];
 
     // Cria o router
-    $router = new Router($routes);
+    $router = Router::getInstance($routes);
 
     // Captura a saída
     ob_start();
